@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../lib/firebase';
 import Link from 'next/link';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function Candidatos() {
   const [candidatos, setCandidatos] = useState<any[]>([]);
@@ -8,8 +9,8 @@ export default function Candidatos() {
 
   useEffect(() => {
     const fetchCandidatos = async () => {
-      const snap = await db.collection('candidatos').limit(50).get();
-      setCandidatos(snap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      const snap = await getDocs(collection(db, 'candidatos'));
+      setCandidatos(snap.docs.slice(0, 50).map((doc: any) => ({ id: doc.id, ...doc.data() })));
       setLoading(false);
     };
     fetchCandidatos();

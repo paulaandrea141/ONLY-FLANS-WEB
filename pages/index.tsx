@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../lib/firebase';
 import Link from 'next/link';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function Dashboard() {
   const [vacantes, setVacantes] = useState<any[]>([]);
@@ -10,11 +11,11 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const vacantesSnap = await db.collection('vacantes').get();
-        const candidatosSnap = await db.collection('candidatos').limit(10).get();
+        const vacantesSnap = await getDocs(collection(db, 'vacantes'));
+        const candidatosSnap = await getDocs(collection(db, 'candidatos'));
         
-        setVacantes(vacantesSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        setCandidatos(candidatosSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        setVacantes(vacantesSnap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() })));
+        setCandidatos(candidatosSnap.docs.slice(0, 10).map((doc: any) => ({ id: doc.id, ...doc.data() })));
       } catch (error) {
         console.error('Error cargando datos:', error);
       } finally {

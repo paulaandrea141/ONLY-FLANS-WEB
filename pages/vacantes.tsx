@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../lib/firebase';
 import Link from 'next/link';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 export default function Vacantes() {
   const [vacantes, setVacantes] = useState<any[]>([]);
@@ -15,8 +16,8 @@ export default function Vacantes() {
 
   useEffect(() => {
     const fetchVacantes = async () => {
-      const snap = await db.collection('vacantes').get();
-      setVacantes(snap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      const snap = await getDocs(collection(db, 'vacantes'));
+      setVacantes(snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() })));
     };
     fetchVacantes();
   }, []);
@@ -24,7 +25,7 @@ export default function Vacantes() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await db.collection('vacantes').add({
+      await addDoc(collection(db, 'vacantes'), {
         ...form,
         salario: parseInt(form.salario),
         estado: 'Activa',
@@ -36,8 +37,8 @@ export default function Vacantes() {
       });
       setForm({ empresa: '', puesto: '', salario: '', genero: 'Cualquiera', colonia: '' });
       setShowForm(false);
-      const snap = await db.collection('vacantes').get();
-      setVacantes(snap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      const snap = await getDocs(collection(db, 'vacantes'));
+      setVacantes(snap.docs.map((doc: any) => ({ id: doc.id, ...doc.data() })));
     } catch (error) {
       console.error('Error:', error);
     }

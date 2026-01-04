@@ -46,7 +46,7 @@ export default function LeadsPage() {
       }
 
       const snapshot = await getDocs(q);
-      const leadsData = snapshot.docs.map((doc) => ({
+      const leadsData = snapshot.docs.map((doc: any) => ({
         ...doc.data(),
         id: doc.id,
       } as Lead));
@@ -63,7 +63,7 @@ export default function LeadsPage() {
         no_apto: 0,
       };
 
-      allLeads.forEach((doc) => {
+      allLeads.forEach((doc: any) => {
         const lead = doc.data() as Lead;
         stats[lead.status as keyof typeof stats]++;
       });
