@@ -1,0 +1,86 @@
+# 🚀 DEPLOY RÁPIDO EN VERCEL
+
+## Paso 1: Crear repo en GitHub (1 minuto)
+
+```bash
+# Ir a: https://github.com/new
+# Nombre: PAULA-ANDREA-ONLY-FLANS-WEB
+# Click: Create repository
+```
+
+## Paso 2: Push del código (1 minuto)
+
+```bash
+cd C:\Users\choco\Desktop\onlyflans-web
+
+# Actualizar remoto
+git remote set-url origin https://github.com/paulaandrea141/PAULA-ANDREA-ONLY-FLANS-WEB.git
+
+# Push a GitHub
+git push -u origin main
+```
+
+## Paso 3: Deploy en Vercel (3 minutos)
+
+```
+1. Ir a: https://vercel.com
+2. Login con GitHub
+3. Click: "New Project"
+4. Seleccionar: PAULA-ANDREA-ONLY-FLANS-WEB
+5. Click: "Import"
+6. Framework: "Next.js" ✅
+7. Agregar variables de entorno (Firebase):
+   
+   NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSy...
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=only-flans.firebaseapp.com
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=only-flans
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=only-flans.appspot.com
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123...
+   NEXT_PUBLIC_FIREBASE_APP_ID=1:123...
+
+8. Click: "Deploy"
+9. Esperar 3-5 minutos
+10. ¡Listo! URL en Vercel
+```
+
+## Paso 4: Configurar auto-deploy (opcional, 2 minutos)
+
+```bash
+# En GitHub repo settings:
+# Settings → Secrets and variables → Actions
+# New secret: VERCEL_TOKEN (obtener de https://vercel.com/account/tokens)
+
+# Luego cada push a main = auto-deploy en Vercel
+```
+
+---
+
+## ✅ Verificar que funciona
+
+```
+URL: https://your-project.vercel.app
+Pages:
+- / → Dashboard
+- /vacantes → Gestión de vacantes
+- /candidatos → Ver candidatos
+- /leads → CRM de leads
+```
+
+---
+
+## 🔑 Dónde obtener credenciales Firebase
+
+```
+https://console.firebase.google.com
+→ Proyecto "Only Flans"
+→ Settings (⚙️)
+→ Project Settings
+→ Tu app (web)
+→ Copiar configuración
+```
+
+---
+
+**TIEMPO TOTAL: ~7 minutos**
+
+¿Necesitas ayuda con algún paso?
