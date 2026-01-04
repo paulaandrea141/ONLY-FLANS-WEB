@@ -51,7 +51,7 @@ export default function Dashboard() {
         </div>
 
         {/* Navigation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Link href="/vacantes">
             <div className="bg-blue-600 hover:bg-blue-700 p-8 rounded-lg cursor-pointer transition">
               <h2 className="text-2xl font-bold mb-2">Gestionar Vacantes</h2>
@@ -62,6 +62,12 @@ export default function Dashboard() {
             <div className="bg-purple-600 hover:bg-purple-700 p-8 rounded-lg cursor-pointer transition">
               <h2 className="text-2xl font-bold mb-2">Ver Candidatos</h2>
               <p className="text-gray-100">Historial y seguimiento de candidatos</p>
+            </div>
+          </Link>
+          <Link href="/leads">
+            <div className="bg-emerald-600 hover:bg-emerald-700 p-8 rounded-lg cursor-pointer transition">
+              <h2 className="text-2xl font-bold mb-2">CRM de Leads 📊</h2>
+              <p className="text-gray-100">Gestión automatizada de leads</p>
             </div>
           </Link>
         </div>
