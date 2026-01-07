@@ -1,0 +1,11 @@
+{
+  "/": "pages/index.html",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/admin/vacantes": "pages/admin/vacantes.html",
+  "/candidatos": "pages/candidatos.html",
+  "/leads": "pages/leads.html",
+  "/vacantes": "pages/vacantes.html",
+  "/404": "pages/404.html"
+}

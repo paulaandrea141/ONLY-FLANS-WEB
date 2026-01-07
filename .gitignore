@@ -1,9 +1,4 @@
-next.config.js
-.next/
+﻿auth_info_baileys/
 node_modules/
-.env.local
-.DS_Store
+.env
 *.log
-npm-debug.log*
-.git
-dist/
