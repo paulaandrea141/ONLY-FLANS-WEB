@@ -9,7 +9,7 @@ __turbopack_load_page_chunks__("/candidatos", [
   "static/chunks/node_modules_react-dom_8a8085df._.js",
   "static/chunks/node_modules_@firebase_firestore_dist_index_esm2017_39b5671e.js",
   "static/chunks/node_modules_96b73043._.js",
-  "static/chunks/[root-of-the-server]__8dc388f3._.js",
+  "static/chunks/[root-of-the-server]__3e33198e._.js",
   "static/chunks/pages_candidatos_2da965e7._.js",
-  "static/chunks/turbopack-pages_candidatos_980af546._.js"
+  "static/chunks/turbopack-pages_candidatos_c155048d._.js"
 ])

@@ -12,16 +12,20 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"],
+      "@backend/*": ["../OnlyFlans/src/*"],
+      "@types/*": ["../OnlyFlans/src/database/*"],
+      "@services/*": ["../OnlyFlans/src/services/*"],
+      "@shared/*": ["../OnlyFlans/src/database/*"]
     },
     "allowJs": true,
     "noEmit": true,

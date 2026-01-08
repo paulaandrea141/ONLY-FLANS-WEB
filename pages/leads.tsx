@@ -1,105 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 import { db } from '../lib/firebase';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
-
-interface Lead {
-  id: string;
-  nombre: string;
-  telefono: string;
-  edad: number;
-  colonia: string;
-  status: 'nuevo' | 'filtrado' | 'citado' | 'no_apto';
-  vacanteSugerida?: string;
-  papeleríaCompleta: boolean;
-  rutaTransporteSabe: boolean;
-  lastContact: number;
-  notes: string;
-  fuenteLead: string;
-  fechaCreacion: number;
-}
+import { doc, updateDoc } from 'firebase/firestore';
+import { useLeads } from '../hooks/useLeads';
+import { LoadingSkeleton } from '../components/LoadingSkeleton';
+import { Toast, useToast } from '../components/Toast';
+import type { Lead } from '../types';
 
 export default function LeadsPage() {
-  const [leads, setLeads] = useState<Lead[]>([]);
+  const { leads, loading } = useLeads();
+  const { toasts, show, remove } = useToast();
   const [filtroStatus, setFiltroStatus] = useState<string>('todos');
-  const [estadísticas, setEstadísticas] = useState({
-    total: 0,
-    nuevo: 0,
-    filtrado: 0,
-    citado: 0,
-    no_apto: 0,
-  });
-  const [cargando, setCargando] = useState(true);
 
-  useEffect(() => {
-    cargarLeads();
-    const intervalo = setInterval(cargarLeads, 5000); // Actualizar cada 5 segundos
-    return () => clearInterval(intervalo);
-  }, [filtroStatus]);
+  const filtrados =
+    filtroStatus === 'todos'
+      ? leads
+      : leads.filter((l) => l.status === filtroStatus);
 
-  const cargarLeads = async () => {
-    try {
-      let q;
-      if (filtroStatus === 'todos') {
-        q = query(collection(db, 'leads'));
-      } else {
-        q = query(collection(db, 'leads'), where('status', '==', filtroStatus));
-      }
+  const stats = [
+    { label: 'Total Leads', value: leads.length, color: 'from-blue-500 to-blue-600', icon: '📊' },
+    {
+      label: 'Nuevos',
+      value: leads.filter((l) => l.status === 'nuevo').length,
+      color: 'from-cyan-500 to-cyan-600',
+      icon: '🆕',
+    },
+    {
+      label: 'Filtrados',
+      value: leads.filter((l) => l.status === 'filtrado').length,
+      color: 'from-yellow-500 to-yellow-600',
+      icon: '📋',
+    },
+    {
+      label: 'Citados',
+      value: leads.filter((l) => l.status === 'citado').length,
+      color: 'from-green-500 to-green-600',
+      icon: '✅',
+    },
+    {
+      label: 'No Aptos',
+      value: leads.filter((l) => l.status === 'no_apto').length,
+      color: 'from-red-500 to-red-600',
+      icon: '❌',
+    },
+  ];
 
-      const snapshot = await getDocs(q);
-      const leadsData = snapshot.docs.map((doc: any) => ({
-        ...doc.data(),
-        id: doc.id,
-      } as Lead));
-
-      setLeads(leadsData);
-
-      // Calcular estadísticas
-      const allLeads = await getDocs(collection(db, 'leads'));
-      const stats = {
-        total: allLeads.size,
-        nuevo: 0,
-        filtrado: 0,
-        citado: 0,
-        no_apto: 0,
-      };
-
-      allLeads.forEach((doc: any) => {
-        const lead = doc.data() as Lead;
-        stats[lead.status as keyof typeof stats]++;
-      });
-
-      setEstadísticas(stats);
-      setCargando(false);
-    } catch (error) {
-      console.error('Error cargando leads:', error);
-      setCargando(false);
-    }
+  const statusColors: Record<string, string> = {
+    nuevo: 'bg-blue-500/20 border-blue-500 text-blue-300',
+    filtrado: 'bg-yellow-500/20 border-yellow-500 text-yellow-300',
+    citado: 'bg-green-500/20 border-green-500 text-green-300',
+    no_apto: 'bg-red-500/20 border-red-500 text-red-300',
   };
 
-  const actualizarStatus = async (leadId: string, nuevoStatus: Lead['status']) => {
+  const handleStatusChange = async (leadId: string, newStatus: Lead['status']) => {
     try {
       await updateDoc(doc(db, 'leads', leadId), {
-        status: nuevoStatus,
+        status: newStatus,
         fechaActualizacion: Date.now(),
       });
-      await cargarLeads();
-    } catch (error) {
-      console.error('Error actualizando status:', error);
-    }
-  };
-
-  const getColorStatus = (status: string) => {
-    switch (status) {
-      case 'nuevo':
-        return 'bg-blue-100 text-blue-800';
-      case 'filtrado':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'citado':
-        return 'bg-green-100 text-green-800';
-      case 'no_apto':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
+      show('✅ Estado actualizado', 'success');
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : 'Error desconocido';
+      show(`Error: ${errorMsg}`, 'error');
     }
   };
 
@@ -114,125 +76,188 @@ export default function LeadsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Encabezado */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">📊 CRM de Leads</h1>
-          <p className="text-gray-400">Gestión automatizada de leads en el embudo de reclutamiento</p>
-        </div>
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Background Effects */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-pulse delay-700" />
+      </div>
 
-        {/* Estadísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-          <div className="bg-blue-600 rounded-lg p-6">
-            <div className="text-3xl font-bold text-white">{estadísticas.total}</div>
-            <p className="text-blue-100 mt-2">Total Leads</p>
-          </div>
-          <div className="bg-blue-500 rounded-lg p-6">
-            <div className="text-3xl font-bold text-white">{estadísticas.nuevo}</div>
-            <p className="text-blue-100 mt-2">Nuevos</p>
-          </div>
-          <div className="bg-yellow-500 rounded-lg p-6">
-            <div className="text-3xl font-bold text-white">{estadísticas.filtrado}</div>
-            <p className="text-yellow-100 mt-2">Filtrados</p>
-          </div>
-          <div className="bg-green-500 rounded-lg p-6">
-            <div className="text-3xl font-bold text-white">{estadísticas.citado}</div>
-            <p className="text-green-100 mt-2">Citados</p>
-          </div>
-          <div className="bg-red-500 rounded-lg p-6">
-            <div className="text-3xl font-bold text-white">{estadísticas.no_apto}</div>
-            <p className="text-red-100 mt-2">No Aptos</p>
-          </div>
-        </div>
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="border-b border-blue-500/30 backdrop-blur-xl bg-black/40 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-6">
+            <h1 className="text-4xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-green-400 bg-clip-text text-transparent mb-2">
+              📊 CRM DE LEADS
+            </h1>
+            <p className="text-blue-300/50 font-mono text-sm mb-4">
+              Gestión automatizada del embudo de reclutamiento
+            </p>
 
-        {/* Filtros */}
-        <div className="mb-6 flex gap-2 flex-wrap">
-          {['todos', 'nuevo', 'filtrado', 'citado', 'no_apto'].map((status) => (
-            <button
-              key={status}
-              onClick={() => setFiltroStatus(status)}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all ${
-                filtroStatus === status
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-slate-800 text-gray-300 hover:bg-slate-700'
-              }`}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
-          ))}
-        </div>
+            {/* Navigation */}
+            <div className="flex gap-4 flex-wrap">
+              <Link href="/" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block">
+                📊 Dashboard
+              </Link>
+              <Link href="/candidatos" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block">
+                👥 Candidatos
+              </Link>
+              <Link href="/vacantes" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block">
+                💼 Vacantes
+              </Link>
+              <Link href="/leads" className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-blue-600 to-green-600 text-white border border-blue-400 cursor-pointer hover:shadow-lg hover:shadow-blue-500/50 transition inline-block">
+                📞 Leads
+              </Link>
+            </div>
+          </div>
+        </header>
 
-        {/* Tabla de Leads */}
-        {cargando ? (
-          <div className="text-center text-gray-400">Cargando...</div>
-        ) : (
-          <div className="bg-slate-800 rounded-lg overflow-hidden">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-700 bg-slate-900">
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Nombre</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Teléfono</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Colonia</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Status</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Último Contacto</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {leads.length === 0 ? (
-                  <tr>
-                    <td colSpan={6} className="px-6 py-8 text-center text-gray-400">
-                      No hay leads con este filtro
-                    </td>
-                  </tr>
-                ) : (
-                  leads.map((lead) => (
-                    <tr key={lead.id} className="border-b border-slate-700 hover:bg-slate-700">
-                      <td className="px-6 py-4 text-white font-medium">{lead.nombre}</td>
-                      <td className="px-6 py-4 text-gray-300">
-                        <a
-                          href={`https://wa.me/${lead.telefono}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-green-400 hover:underline"
-                        >
-                          {lead.telefono}
-                        </a>
-                      </td>
-                      <td className="px-6 py-4 text-gray-300">{lead.colonia}</td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-semibold ${getColorStatus(
-                            lead.status
-                          )}`}
-                        >
-                          {lead.status}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-gray-400 text-sm">
-                        {formatearFecha(lead.lastContact)}
-                      </td>
-                      <td className="px-6 py-4">
-                        <select
-                          value={lead.status}
-                          onChange={(e) => actualizarStatus(lead.id, e.target.value as Lead['status'])}
-                          className="bg-slate-700 text-white px-2 py-1 rounded text-sm"
-                        >
-                          <option value="nuevo">Nuevo</option>
-                          <option value="filtrado">Filtrado</option>
-                          <option value="citado">Citado</option>
-                          <option value="no_apto">No Apto</option>
-                        </select>
-                      </td>
+        <main className="max-w-7xl mx-auto px-6 py-8">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+            {stats.map((stat, idx) => (
+              <div
+                key={idx}
+                className={`relative overflow-hidden rounded-xl border border-blue-500/30 bg-gradient-to-br ${stat.color} p-0.5 group`}
+              >
+                <div className="relative bg-black/80 backdrop-blur-xl rounded-lg p-6 h-32 flex flex-col justify-center hover:bg-black/60 transition duration-300">
+                  <p className="text-blue-300 text-sm font-mono">{stat.icon} {stat.label}</p>
+                  <p className="text-3xl font-black text-white mt-2">{stat.value}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Filters */}
+          <div className="mb-8 flex gap-2 flex-wrap">
+            {['todos', 'nuevo', 'filtrado', 'citado', 'no_apto'].map((status) => (
+              <button
+                key={status}
+                onClick={() => setFiltroStatus(status)}
+                className={`px-4 py-2 rounded-lg font-mono text-sm transition duration-300 ${
+                  filtroStatus === status
+                    ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white border border-blue-400'
+                    : 'bg-black/40 border border-blue-500/30 text-blue-300 hover:border-blue-400'
+                }`}
+              >
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          {/* Leads Table */}
+          <div className="relative overflow-hidden rounded-2xl border border-blue-500/30 bg-black/40 backdrop-blur-xl">
+            <div className="border-b border-blue-500/30 p-6 bg-gradient-to-r from-blue-600/20 to-green-600/20">
+              <h3 className="text-xl font-black text-transparent bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text">
+                📋 {filtroStatus === 'todos' ? 'TODOS LOS LEADS' : filtroStatus.toUpperCase()}
+              </h3>
+            </div>
+
+            <div className="overflow-x-auto">
+              {loading ? (
+                <div className="p-8">
+                  <LoadingSkeleton />
+                </div>
+              ) : filtrados.length === 0 ? (
+                <div className="p-8 text-center">
+                  <p className="text-blue-300/50 font-mono">
+                    No hay leads con este filtro
+                  </p>
+                </div>
+              ) : (
+                <table className="w-full">
+                  <thead className="border-b border-blue-500/20 bg-black/50">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-sm font-black text-blue-400">
+                        NOMBRE
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-black text-blue-400">
+                        TELÉFONO
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-black text-blue-400">
+                        COLONIA
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-black text-blue-400">
+                        STATUS
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-black text-blue-400">
+                        ÚLTIMO CONTACTO
+                      </th>
+                      <th className="px-6 py-4 text-center text-sm font-black text-blue-400">
+                        ACCIÓN
+                      </th>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody>
+                    {filtrados.map((lead) => (
+                      <tr
+                        key={lead.id}
+                        className="border-b border-blue-500/10 hover:bg-blue-500/10 transition duration-200 group"
+                      >
+                        <td className="px-6 py-4 font-bold text-white group-hover:text-blue-400 transition">
+                          {lead.nombre}
+                        </td>
+                        <td className="px-6 py-4">
+                          <a
+                            href={`https://wa.me/${lead.telefono}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-green-400 hover:text-green-300 transition font-mono text-sm"
+                          >
+                            📱 {lead.telefono}
+                          </a>
+                        </td>
+                        <td className="px-6 py-4 text-blue-300">{lead.colonia}</td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`inline-block px-3 py-1 rounded-full text-xs font-bold border transition duration-300 ${
+                              statusColors[lead.status] ||
+                              'bg-gray-500/20 border-gray-500 text-gray-300'
+                            }`}
+                          >
+                            {lead.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-gray-400 text-sm font-mono">
+                          {formatearFecha(lead.lastContact)}
+                        </td>
+                        <td className="px-6 py-4 text-center">
+                          <select
+                            value={lead.status}
+                            onChange={(e) =>
+                              handleStatusChange(lead.id, e.target.value as Lead['status'])
+                            }
+                            className="bg-black/60 border border-blue-500/50 text-white px-3 py-2 rounded text-sm font-mono focus:outline-none focus:border-blue-400 transition"
+                          >
+                            <option value="nuevo">Nuevo</option>
+                            <option value="filtrado">Filtrado</option>
+                            <option value="citado">Citado</option>
+                            <option value="no_apto">No Apto</option>
+                          </select>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
           </div>
-        )}
+        </main>
+      </div>
+
+      {/* Toast Notifications */}
+      <div className="fixed bottom-0 right-0 p-4 space-y-2 z-50">
+        {toasts.map((toast) => (
+          <Toast
+            key={toast.id}
+            message={toast.message}
+            type={toast.type}
+            onClose={() => remove(toast.id)}
+          />
+        ))}
       </div>
     </div>
   );
 }
+
