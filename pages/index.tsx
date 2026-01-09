@@ -7,6 +7,7 @@ import { LoadingSkeleton, LoadingCard } from '../components/LoadingSkeleton';
 import { Toast, useToast } from '../components/Toast';
 import RistraCandidatos from '../components/RistraCandidatos';
 import FireballSwitch from '../components/FireballSwitch';
+import VoiceControl from '../components/VoiceControl';
 import { validators } from '../lib/validators';
 import type { Vacante } from '../types';
 
@@ -16,6 +17,11 @@ export default function Dashboard() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [iaEnabled, setIaEnabled] = useState(false);
   const [filtroEtapa, setFiltroEtapa] = useState('todos');
+  const [isProcessingImage, setIsProcessingImage] = useState(false);
+  const [textoExtraido, setTextoExtraido] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [modoIngesta, setModoIngesta] = useState<'texto' | 'imagen' | 'voz'>('texto');
+  const [autoPublicar, setAutoPublicar] = useState(false);
   const [form, setForm] = useState({
     puesto: '',
     salario: '',
@@ -23,6 +29,158 @@ export default function Dashboard() {
     descripcion: '',
     requisitos: '',
   });
+
+  // 📸 Handler para imágenes
+  const handleImageUpload = async (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      show('❌ Solo se permiten imágenes', 'error');
+      return;
+    }
+
+    setIsProcessingImage(true);
+    show('📸 Leyendo captura con Llama Vision...', 'info');
+
+    try {
+      const formData = new FormData();
+      formData.append('imagen', file);
+
+      const res = await fetch('http://localhost:3000/api/vacantes/extract/image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await res.json();
+
+      if (result.success && result.datosVacante) {
+        const d = result.datosVacante;
+
+        // Auto-relleno
+        setForm({
+          puesto: d.puesto || '',
+          salario: d.salario || '',
+          experiencia: d.requisitos || '',
+          descripcion: `📍 ${d.empresa} - ${d.ubicacion}\n⏰ ${d.horario}\n🚌 ${d.rutas_transporte}\n💼 ${d.requisitos}\n💰 ${d.salario}${d.beneficios !== 'No especificado' ? `\n🎁 ${d.beneficios}` : ''}`.trim(),
+          requisitos: d.requisitos || '',
+        });
+
+        setTextoExtraido(result.textoExtraido);
+        show(`✅ Captura leída: ${result.textoExtraido.length} caracteres extraídos`, 'success');
+        
+        // Auto-publicar si está activado
+        if (autoPublicar) {
+          setTimeout(() => {
+            const formElement = document.querySelector('form');
+            if (formElement) {
+              formElement.requestSubmit();
+            }
+          }, 1500);
+        }
+      } else {
+        show(`❌ ${result.error || 'No se pudo leer la imagen'}`, 'error');
+      }
+    } catch (error) {
+      console.error('Error procesando imagen:', error);
+      show('❌ Error de conexión con el backend', 'error');
+    } finally {
+      setIsProcessingImage(false);
+    }
+  };
+
+  // 🎤 Handler para comandos de voz
+  const handleVoiceCommand = async (comando: string) => {
+    show(`🎤 Procesando: "${comando}"`, 'info');
+
+    try {
+      const res = await fetch('http://localhost:3000/api/voice/command', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ comando, userId: 'jefa' }),
+      });
+
+      const result = await res.json();
+
+      if (result.success && result.resultado) {
+        const r = result.resultado;
+        
+        if (r.tipo === 'cambio' && r.campo) {
+          // Aplicar micro-cambio
+          setForm(prev => ({
+            ...prev,
+            [r.campo]: r.valorNuevo,
+          }));
+          show(`✅ ${r.confirmacion}`, 'success');
+        } else if (r.confirmacion) {
+          show(r.confirmacion, 'info');
+        }
+      }
+    } catch (error) {
+      console.error('Error procesando voz:', error);
+      show('❌ Error procesando comando de voz', 'error');
+    }
+  };
+
+  // ⌨️ Handler para texto
+  const handleIngestaInteligente = async () => {
+    const textarea = document.getElementById('ingesta-texto') as HTMLTextAreaElement;
+    const texto = textarea?.value.trim();
+
+    if (!texto) {
+      show('❌ Pega el texto del Jefecito primero', 'error');
+      return;
+    }
+
+    setIsProcessing(true);
+    show('🔍 Analizando con IA Groq (llama-3.3-70b)...', 'info');
+
+    try {
+      const startTime = Date.now();
+      
+      const res = await fetch('http://localhost:3000/api/vacantes/extract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ texto }),
+      });
+
+      const result = await res.json();
+      const latency = Date.now() - startTime;
+
+      if (result.success && result.datos) {
+        const d = result.datos;
+        
+        // ✅ AUTO-RELLENO SANGRIENTO
+        setForm({
+          puesto: d.puesto || '',
+          salario: d.salario || '',
+          experiencia: d.requisitos || '',
+          descripcion: `📍 ${d.empresa} - ${d.ubicacion}\n⏰ ${d.horario}\n🚌 ${d.rutas_transporte}\n💼 ${d.requisitos}\n💰 ${d.salario}${d.beneficios !== 'No especificado' ? `\n🎁 ${d.beneficios}` : ''}`.trim(),
+          requisitos: d.requisitos || '',
+        });
+
+        show(`✅ Vacante auto-rellenada en ${latency}ms. Revisa y guarda.`, 'success');
+        textarea.value = '';
+        
+        // Scroll automático al formulario
+        document.querySelector('form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Auto-publicar si está activado
+        if (autoPublicar) {
+          setTimeout(() => {
+            const formElement = document.querySelector('form');
+            if (formElement) {
+              formElement.requestSubmit();
+            }
+          }, 1500);
+        }
+      } else {
+        show(`❌ ${result.error || 'No se pudo extraer información del texto'}`, 'error');
+      }
+    } catch (error) {
+      console.error('Error en ingesta:', error);
+      show('❌ Error de conexión con el backend. Verifica que esté corriendo.', 'error');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -227,19 +385,216 @@ export default function Dashboard() {
                 {editingId ? '⚡ EDITAR VACANTE' : '➕ NUEVA VACANTE'}
               </h2>
 
-              {/* 🧠 ZONA DE INGESTA INTELIGENTE */}
-              <div className="mb-6 p-6 rounded-xl bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border-2 border-dashed border-orange-500/30 hover:border-orange-400 transition duration-300">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">🧠</span>
-                  <div>
-                    <h3 className="text-lg font-bold text-orange-400">INGESTA INTELIGENTE</h3>
-                    <p className="text-orange-300/60 text-sm font-mono">
-                      Pega el texto caótico del jefe aquí y la IA lo procesará
-                    </p>
+              {/* 🧠 ZONA DE INGESTA MULTIMODAL 3.0 */}
+              <div className="mb-6 p-6 rounded-xl bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border-2 border-dashed border-orange-500/30 hover:border-orange-400 transition duration-300 relative overflow-hidden">
+                {/* Efecto de pulso cuando está procesando */}
+                {(isProcessingImage || isProcessing) && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 via-yellow-500/20 to-orange-600/20 animate-pulse" />
+                )}
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl">🧠</span>
+                      <div>
+                        <h3 className="text-xl font-black text-orange-400">
+                          INGESTA MULTIMODAL 3.0
+                        </h3>
+                        <p className="text-sm text-orange-300/80 font-mono">
+                          📸 Captura + 🎤 Voz + ⌨️ Texto → IA lo procesa TODO
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Indicador de estado */}
+                    <div className={`px-3 py-1 rounded-full text-xs font-bold ${
+                      isProcessingImage || isProcessing
+                        ? 'bg-yellow-500/20 text-yellow-400 animate-pulse'
+                        : 'bg-green-500/20 text-green-400'
+                    }`}>
+                      {isProcessingImage || isProcessing ? '⚡ PROCESANDO...' : '✅ LISTO'}
+                    </div>
+                  </div>
+
+                  {/* TABS: Texto | Imagen | Voz */}
+                  <div className="flex gap-2 mb-4">
+                    <button
+                      type="button"
+                      onClick={() => setModoIngesta('texto')}
+                      className={`flex-1 px-4 py-2 rounded-lg font-bold transition ${
+                        modoIngesta === 'texto'
+                          ? 'bg-orange-500 text-black'
+                          : 'bg-orange-500/20 text-orange-400 hover:bg-orange-500/30'
+                      }`}
+                    >
+                      ⌨️ TEXTO
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setModoIngesta('imagen')}
+                      className={`flex-1 px-4 py-2 rounded-lg font-bold transition ${
+                        modoIngesta === 'imagen'
+                          ? 'bg-purple-500 text-black'
+                          : 'bg-purple-500/20 text-purple-400 hover:bg-purple-500/30'
+                      }`}
+                    >
+                      📸 CAPTURA
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setModoIngesta('voz')}
+                      className={`flex-1 px-4 py-2 rounded-lg font-bold transition ${
+                        modoIngesta === 'voz'
+                          ? 'bg-blue-500 text-black'
+                          : 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30'
+                      }`}
+                    >
+                      🎤 VOZ
+                    </button>
+                  </div>
+
+                  {/* MODO: IMAGEN */}
+                  {modoIngesta === 'imagen' && (
+                    <div
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        const file = e.dataTransfer.files[0];
+                        if (file) handleImageUpload(file);
+                      }}
+                      onDragOver={(e) => e.preventDefault()}
+                      className="border-2 border-dashed border-purple-500/30 rounded-lg p-8 text-center hover:border-purple-400 transition cursor-pointer bg-black/30"
+                    >
+                      <input
+                        type="file"
+                        id="image-upload"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleImageUpload(file);
+                        }}
+                      />
+                      <label htmlFor="image-upload" className="cursor-pointer">
+                        <div className="text-5xl mb-3">📸</div>
+                        <p className="text-purple-400 font-bold mb-2">
+                          Arrastra captura del Jefecito o haz click
+                        </p>
+                        <p className="text-purple-300/60 text-sm">
+                          PNG, JPG hasta 5MB • Llama 3.2 Vision lee TODO
+                        </p>
+                      </label>
+                    </div>
+                  )}
+
+                  {/* MODO: VOZ */}
+                  {modoIngesta === 'voz' && (
+                    <div className="p-8 bg-black/30 rounded-lg border border-blue-500/30">
+                      <div className="text-center mb-4">
+                        <div className="text-5xl mb-3">🎤</div>
+                        <p className="text-blue-400 font-bold mb-2">
+                          Control de Voz Activado
+                        </p>
+                        <p className="text-blue-300/60 text-sm">
+                          Di: "Súbele 2k al sueldo de DAMAR" o "Cambia el horario a vespertino"
+                        </p>
+                      </div>
+                      <VoiceControl onVoiceCommand={handleVoiceCommand} />
+                    </div>
+                  )}
+
+                  {/* MODO: TEXTO */}
+                  {modoIngesta === 'texto' && (
+                    <textarea
+                      id="ingesta-texto"
+                      rows={5}
+                      placeholder="Ej: 'urge operario DAMAR turno matutino ruta desde cumbres sueldo 2700 prestaciones completas'"
+                      className="w-full bg-black/50 border border-orange-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-500/50 backdrop-blur-sm transition font-mono text-sm"
+                      disabled={isProcessing}
+                    />
+                  )}
+
+                  {/* Texto extraído (preview) */}
+                  {textoExtraido && (
+                    <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+                      <p className="text-green-400 font-mono text-xs mb-2">
+                        📝 Texto extraído de la imagen:
+                      </p>
+                      <p className="text-white text-sm whitespace-pre-wrap">
+                        {textoExtraido}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Botones de acción */}
+                  <div className="mt-4 flex gap-3">
+                    {modoIngesta === 'texto' && (
+                      <button
+                        type="button"
+                        onClick={handleIngestaInteligente}
+                        disabled={isProcessing}
+                        className={`flex-1 px-6 py-3 rounded-lg font-bold transition-all duration-300 ${
+                          isProcessing
+                            ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-orange-500 to-yellow-500 text-black hover:from-orange-600 hover:to-yellow-600 hover:scale-105'
+                        }`}
+                      >
+                        {isProcessing ? (
+                          <>
+                            <span className="animate-spin inline-block mr-2">⚙️</span>
+                            Analizando con Groq IA...
+                          </>
+                        ) : (
+                          <>🚀 ANALIZAR Y AUTO-RELLENAR</>
+                        )}
+                      </button>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const textarea = document.getElementById('ingesta-texto') as HTMLTextAreaElement;
+                        if (textarea) textarea.value = '';
+                        setTextoExtraido('');
+                      }}
+                      className="px-6 py-3 rounded-lg font-bold bg-red-500/20 text-red-400 hover:bg-red-500/30 border border-red-500/30 transition"
+                    >
+                      🗑️ LIMPIAR
+                    </button>
+                  </div>
+
+                  {/* 🔥 BOTÓN DE AUTO-PUBLICACIÓN */}
+                  <div className="mt-4 p-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-green-400 font-bold text-sm">
+                          🚀 PUBLICACIÓN AUTOMÁTICA
+                        </p>
+                        <p className="text-green-300/60 text-xs font-mono mt-1">
+                          La IA analiza, rellena y publica sin confirmación (1.5s delay)
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setAutoPublicar(!autoPublicar)}
+                        className={`px-6 py-3 rounded-lg font-bold transition-all duration-300 ${
+                          autoPublicar
+                            ? 'bg-green-500 text-black shadow-[0_0_20px_rgba(34,197,94,0.8)]'
+                            : 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                        }`}
+                      >
+                        {autoPublicar ? '✅ ACTIVADO' : '⭕ DESACTIVADO'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Ejemplos rápidos */}
+                  <div className="mt-3 text-xs text-orange-300/60 font-mono">
+                    💡 <strong>Ejemplos válidos:</strong> "operario ILSAN 2288 turno vespertino" | "supervisor MAGNEKON experiencia 3 años" | "chofer ruta santa maría sueldo 2500"
                   </div>
                 </div>
-                <textarea
-                  id="ingesta-texto"
+              </div>
+
+              <form onSubmit={handleSave} className="space-y-4">
                   placeholder="Ejemplo: 'urge operario en DAMAR sueldo 10k turno matutino ruta desde cumbres req secundaria'"
                   className="w-full bg-black/50 border border-orange-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-500/50 backdrop-blur-sm transition font-mono text-sm min-h-[100px]"
                   onPaste={async (e) => {
