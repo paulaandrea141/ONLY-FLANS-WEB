@@ -9,6 +9,7 @@ import RistraCandidatos from '../components/RistraCandidatos';
 import FireballSwitch from '../components/FireballSwitch';
 import VoiceControl from '../components/VoiceControl';
 import HistorialChat from '../components/HistorialChat';
+import PanelVacantesPendientes from '../components/PanelVacantesPendientes';
 import { validators } from '../lib/validators';
 import type { Vacante } from '../types';
 
@@ -45,7 +46,8 @@ export default function Dashboard() {
 
     try {
       // Registrar en historial
-      await fetch('http://localhost:3000/api/historial/mensaje', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      await fetch(`${apiUrl}/api/historial/mensaje`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -57,7 +59,7 @@ export default function Dashboard() {
       const formData = new FormData();
       formData.append('imagen', file);
 
-      const res = await fetch('http://localhost:3000/api/vacantes/extract/image', {
+      const res = await fetch(`${apiUrl}/api/vacantes/extract/image`, {
         method: 'POST',
         body: formData,
       });
@@ -79,38 +81,27 @@ export default function Dashboard() {
         setTextoExtraido(result.textoExtraido);
         show(`✅ Captura leída: ${result.textoExtraido.length} caracteres extraídos`, 'success');
 
+        // Añadir a vacantes pendientes con ID único
+        const vacanteTemp = {
+          id: Date.now().toString(),
+          empresa: d.empresa,
+          ubicacion: d.ubicacion,
+          datos: d
+        };
+        setVacantesPendientes(prev => [...prev, vacanteTemp]);
+
         // Registrar respuesta IA en historial
+        await fetch(`${apiUrl}/api/historial/mensaje`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contenido: `🧠 Bob: Jessica, detecté ${d.empresa}. ¿La mando a la Ristra?`,
+            tipoInput: 'imagen'
+          })
+        });
+        
+        // Auto-publicar si está activado
         if (autoPublicar) {
-          const vacanteTemp = {
-            empresa: d.empresa,
-            ubicacion: d.ubicacion,
-            datos: d
-          };
-          setVacantesPendientes(prev => [...prev, vacanteTemp]);
-          
-          await fetch('http://localhost:3000/api/historial/mensaje', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contenido: `🧠 Bob: Jessica, detecté ${d.empresa}. Auto-publicando...`,
-              tipoInput: 'imagen'
-            })
-          });
-          
-          setTimeout(() => {
-            const formElement = document.querySelector('form');
-            if (formElement) {
-              formElement.requestSubmit();
-            }
-          }, 1500);
-        } else {
-          const vacanteTemp = {
-            empresa: d.empresa,
-            ubicacion: d.ubicacion,
-            datos: d
-          };
-          setVacantesPendientes(prev => [...prev, vacanteTemp]);
-        }
       } else {
         show(`❌ ${result.error || 'No se pudo leer la imagen'}`, 'error');
       }
@@ -127,7 +118,8 @@ export default function Dashboard() {
     show(`🎤 Procesando: "${comando}"`, 'info');
 
     try {
-      const res = await fetch('http://localhost:3000/api/voice/command', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      const res = await fetch(`${apiUrl}/api/voice/command`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ comando, userId: 'jefa' }),
@@ -170,8 +162,9 @@ export default function Dashboard() {
 
     try {
       const startTime = Date.now();
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
       
-      const res = await fetch('http://localhost:3000/api/vacantes/extract', {
+      const res = await fetch(`${apiUrl}/api/vacantes/extract`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ texto }),
@@ -304,6 +297,63 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Panel Vacantes Pendientes */}
+      <PanelVacantesPendientes
+        vacantes={vacantesPendientes}
+        onAceptar={async (id) => {
+          const vacante = vacantesPendientes.find(v => v.id === id);
+          if (vacante) {
+            // Guardar en Firebase
+            const formData = {
+              puesto: vacante.datos.puesto || '',
+              salario: vacante.datos.salario || '',
+              experiencia: vacante.datos.requisitos || '',
+              descripcion: vacante.datos.descripcion || '',
+              requisitos: vacante.datos.requisitos || '',
+            };
+            
+            try {
+              await addDoc(collection(db, 'vacantes'), formData);
+              show(`✅ ${vacante.empresa} guardada en la Ristra`, 'success');
+              
+              // Registrar en historial
+              const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+              await fetch(`${apiUrl}/api/historial/mensaje`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  contenido: `🧠 Bob: Jessica, ${vacante.empresa} guardada. Ya está en la Ristra.`,
+                  tipoInput: 'imagen'
+                })
+              });
+              
+              setVacantesPendientes(prev => prev.filter(v => v.id !== id));
+            } catch (error) {
+              show('❌ Error al guardar', 'error');
+            }
+          }
+        }}
+        onRechazar={async (id) => {
+          const vacante = vacantesPendientes.find(v => v.id === id);
+          if (vacante) {
+            show(`❌ ${vacante.empresa} descartada`, 'info');
+            
+            // Registrar en historial
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+            await fetch(`${apiUrl}/api/historial/mensaje`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contenido: `🧠 Bob: Jessica, descartando ${vacante.empresa}. No se guardó nada.`,
+                tipoInput: 'imagen'
+              })
+            });
+            
+            setVacantesPendientes(prev => prev.filter(v => v.id !== id));
+          }
+        }}
+      />
+
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
@@ -639,7 +689,8 @@ export default function Dashboard() {
                       show('🔍 Analizando texto con IA...', 'info');
                       
                       try {
-                        const res = await fetch('http://localhost:3000/api/vacantes/extract', {
+                        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+                        const res = await fetch(`${apiUrl}/api/vacantes/extract`, {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
                           body: JSON.stringify({ texto }),

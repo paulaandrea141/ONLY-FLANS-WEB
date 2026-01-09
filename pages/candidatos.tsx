@@ -1,17 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useCandidatos } from '../hooks/useCandidatos';
 import { LoadingSkeleton } from '../components/LoadingSkeleton';
 import { RadarScan } from '../components/RadarScan';
 
 export default function Candidatos() {
+  const router = useRouter();
   const { candidatos, loading } = useCandidatos();
   const [filtroEtapa, setFiltroEtapa] = useState<string>('todos');
+  const [filtroEmpresa, setFiltroEmpresa] = useState<string>('');
 
-  const filtrados =
-    filtroEtapa === 'todos'
-      ? candidatos
-      : candidatos.filter((c) => c.etapa === filtroEtapa);
+  // Leer query param "empresa" de la URL
+  useEffect(() => {
+    if (router.query.empresa) {
+      setFiltroEmpresa(router.query.empresa as string);
+    }
+  }, [router.query.empresa]);
+
+  const filtrados = candidatos.filter((c) => {
+    const matchEtapa = filtroEtapa === 'todos' || c.etapa === filtroEtapa;
+    const matchEmpresa = !filtroEmpresa || 
+      c.empresa?.toLowerCase().includes(filtroEmpresa.toLowerCase());
+    return matchEtapa && matchEmpresa;
+  });
 
   const etapaColors: Record<string, string> = {
     Prospecto: 'bg-blue-500/20 border-blue-500 text-blue-300',
@@ -68,6 +80,24 @@ export default function Candidatos() {
         </header>
 
         <main className="max-w-7xl mx-auto px-6 py-8">
+          {/* Filtro Empresa Activo */}
+          {filtroEmpresa && (
+            <div className="mb-4 p-4 rounded-lg bg-yellow-500/20 border border-yellow-500 text-yellow-300 flex items-center justify-between">
+              <span className="font-mono">
+                🔍 Filtrando por empresa: <strong>{filtroEmpresa}</strong>
+              </span>
+              <button
+                onClick={() => {
+                  setFiltroEmpresa('');
+                  router.push('/candidatos', undefined, { shallow: true });
+                }}
+                className="px-3 py-1 bg-yellow-600 hover:bg-yellow-500 rounded text-sm font-bold transition"
+              >
+                ✕ Limpiar
+              </button>
+            </div>
+          )}
+
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {stats.map((stat, idx) => (
