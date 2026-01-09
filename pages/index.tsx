@@ -907,6 +907,35 @@ export default function Dashboard() {
         {mostrarHistorial ? '👁️ Ocultar Chat' : '💬 Mostrar Chat'}
       </button>
 
+      {/* Modal de Confirmación */}
+      {mostrarConfirmacion && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-fuchsia-900/90 to-purple-900/90 border-4 border-fuchsia-500 rounded-2xl p-8 max-w-md shadow-2xl">
+            <h3 className="text-3xl font-black text-fuchsia-300 mb-4">
+              ⚠️ CONFIRMAR SUCCIÓN
+            </h3>
+            <p className="text-white text-lg mb-6">
+              ¿Autoriza que la <strong className="text-fuchsia-400">Aspiradora 3000</strong> succione 
+              los últimos <strong>300 mensajes</strong> del grupo seleccionado?
+            </p>
+            <div className="flex gap-4">
+              <button
+                onClick={confirmarSuccion}
+                className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-black font-black py-4 rounded-xl hover:scale-105 transition"
+              >
+                ✅ SÍ, SUCCIONAR
+              </button>
+              <button
+                onClick={() => setMostrarConfirmacion(false)}
+                className="flex-1 bg-gradient-to-r from-red-500 to-rose-500 text-white font-black py-4 rounded-xl hover:scale-105 transition"
+              >
+                ❌ CANCELAR
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Toast Notifications */}
       <div className="fixed bottom-0 right-0 p-4 space-y-2 z-50">
         {toasts.map((toast) => (
