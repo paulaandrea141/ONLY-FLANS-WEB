@@ -663,25 +663,25 @@ const Toast = ({ message, type = 'info', duration = 3000, onClose })=>{
                     children: icons[type]
                 }, void 0, false, {
                     fileName: "[project]/components/Toast.tsx",
-                    lineNumber: 50,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                     children: message
                 }, void 0, false, {
                     fileName: "[project]/components/Toast.tsx",
-                    lineNumber: 51,
+                    lineNumber: 46,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/Toast.tsx",
-            lineNumber: 49,
+            lineNumber: 44,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/Toast.tsx",
-        lineNumber: 46,
+        lineNumber: 41,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -852,7 +852,7 @@ function Vacantes() {
                                             children: "👥 Candidatos"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/vacantes.tsx",
-                                            lineNumber: 80,
+                                            lineNumber: 83,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -861,7 +861,7 @@ function Vacantes() {
                                             children: "💼 Vacantes"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/vacantes.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 89,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -870,7 +870,7 @@ function Vacantes() {
                                             children: "📞 Leads"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/vacantes.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 95,
                                             columnNumber: 15
                                         }, this)
                                     ]
@@ -901,7 +901,7 @@ function Vacantes() {
                                         className: "absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 opacity-0 group-hover:opacity-100 transition duration-300"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/vacantes.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 113,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -909,13 +909,13 @@ function Vacantes() {
                                         children: showForm ? '✕ CANCELAR' : '➕ NUEVA VACANTE'
                                     }, void 0, false, {
                                         fileName: "[project]/pages/vacantes.tsx",
-                                        lineNumber: 102,
+                                        lineNumber: 114,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/vacantes.tsx",
-                                lineNumber: 95,
+                                lineNumber: 107,
                                 columnNumber: 11
                             }, this),
                             showForm && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -925,7 +925,7 @@ function Vacantes() {
                                         className: "absolute inset-0 bg-gradient-to-r from-green-600/10 via-transparent to-emerald-600/10 opacity-0 hover:opacity-100 transition duration-500"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/vacantes.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 120,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -933,7 +933,7 @@ function Vacantes() {
                                         children: "➕ NUEVA VACANTE"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/vacantes.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 122,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -955,7 +955,7 @@ function Vacantes() {
                                                         required: true
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 116,
+                                                        lineNumber: 128,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -970,7 +970,7 @@ function Vacantes() {
                                                         required: true
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 124,
+                                                        lineNumber: 136,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -985,7 +985,7 @@ function Vacantes() {
                                                         required: true
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 132,
+                                                        lineNumber: 144,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1000,13 +1000,13 @@ function Vacantes() {
                                                         required: true
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 140,
+                                                        lineNumber: 152,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/vacantes.tsx",
-                                                lineNumber: 115,
+                                                lineNumber: 127,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1021,27 +1021,27 @@ function Vacantes() {
                                                         children: "Cualquiera"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 155,
+                                                        lineNumber: 167,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                         children: "M"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 156,
+                                                        lineNumber: 168,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                         children: "F"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 157,
+                                                        lineNumber: 169,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/vacantes.tsx",
-                                                lineNumber: 150,
+                                                lineNumber: 162,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1052,7 +1052,7 @@ function Vacantes() {
                                                         className: "absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 opacity-0 group-hover:opacity-100 transition duration-300"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 164,
+                                                        lineNumber: 176,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1060,32 +1060,32 @@ function Vacantes() {
                                                         children: "✅ CREAR VACANTE"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 165,
+                                                        lineNumber: 177,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/vacantes.tsx",
-                                                lineNumber: 160,
+                                                lineNumber: 172,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/vacantes.tsx",
-                                        lineNumber: 114,
+                                        lineNumber: 126,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/vacantes.tsx",
-                                lineNumber: 107,
+                                lineNumber: 119,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-4",
                                 children: loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$LoadingSkeleton$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["LoadingSkeleton"], {}, void 0, false, {
                                     fileName: "[project]/pages/vacantes.tsx",
-                                    lineNumber: 174,
+                                    lineNumber: 186,
                                     columnNumber: 15
                                 }, this) : vacantes.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center py-12",
@@ -1094,12 +1094,12 @@ function Vacantes() {
                                         children: "Sin vacantes. Crea una nueva para comenzar."
                                     }, void 0, false, {
                                         fileName: "[project]/pages/vacantes.tsx",
-                                        lineNumber: 177,
+                                        lineNumber: 189,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/vacantes.tsx",
-                                    lineNumber: 176,
+                                    lineNumber: 188,
                                     columnNumber: 15
                                 }, this) : vacantes.map((vacante)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "group relative overflow-hidden rounded-xl border border-green-500/20 bg-gradient-to-r from-green-600/10 via-black/50 to-emerald-600/10 backdrop-blur-xl hover:border-green-400/50 transition duration-300 p-6",
@@ -1117,7 +1117,7 @@ function Vacantes() {
                                                                     children: vacante.empresa
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                                    lineNumber: 190,
+                                                                    lineNumber: 202,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1125,13 +1125,13 @@ function Vacantes() {
                                                                     children: vacante.estado || 'Activa'
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                                    lineNumber: 193,
+                                                                    lineNumber: 205,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                            lineNumber: 189,
+                                                            lineNumber: 201,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1139,7 +1139,7 @@ function Vacantes() {
                                                             children: vacante.puesto
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                            lineNumber: 197,
+                                                            lineNumber: 209,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1152,7 +1152,7 @@ function Vacantes() {
                                                                             children: "SALARIO"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 203,
+                                                                            lineNumber: 213,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1163,13 +1163,13 @@ function Vacantes() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 204,
+                                                                            lineNumber: 214,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                                    lineNumber: 202,
+                                                                    lineNumber: 212,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1179,7 +1179,7 @@ function Vacantes() {
                                                                             children: "COLONIA"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 209,
+                                                                            lineNumber: 219,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1187,13 +1187,13 @@ function Vacantes() {
                                                                             children: vacante.colonias?.[0] || 'N/A'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 210,
+                                                                            lineNumber: 220,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                                    lineNumber: 208,
+                                                                    lineNumber: 218,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1203,7 +1203,7 @@ function Vacantes() {
                                                                             children: "CANDIDATOS"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 215,
+                                                                            lineNumber: 223,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1211,13 +1211,13 @@ function Vacantes() {
                                                                             children: vacante.candidatosAsignados || 0
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 216,
+                                                                            lineNumber: 224,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                                    lineNumber: 214,
+                                                                    lineNumber: 222,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1227,7 +1227,7 @@ function Vacantes() {
                                                                             children: "GÉNERO"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 221,
+                                                                            lineNumber: 227,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1235,25 +1235,25 @@ function Vacantes() {
                                                                             children: vacante.requisitos?.genero || 'Cualquiera'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                                            lineNumber: 222,
+                                                                            lineNumber: 228,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                                    lineNumber: 220,
+                                                                    lineNumber: 226,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/vacantes.tsx",
-                                                            lineNumber: 201,
+                                                            lineNumber: 211,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                    lineNumber: 188,
+                                                    lineNumber: 200,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1266,7 +1266,7 @@ function Vacantes() {
                                                                 children: "📊 ESTADO"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/vacantes.tsx",
-                                                                lineNumber: 231,
+                                                                lineNumber: 237,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1276,7 +1276,7 @@ function Vacantes() {
                                                                         className: "w-3 h-3 bg-green-400 rounded-full animate-pulse"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                                        lineNumber: 233,
+                                                                        lineNumber: 239,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1284,46 +1284,46 @@ function Vacantes() {
                                                                         children: "ACTIVA"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                                        lineNumber: 234,
+                                                                        lineNumber: 240,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/pages/vacantes.tsx",
-                                                                lineNumber: 232,
+                                                                lineNumber: 238,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/pages/vacantes.tsx",
-                                                        lineNumber: 230,
+                                                        lineNumber: 236,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/vacantes.tsx",
-                                                    lineNumber: 229,
+                                                    lineNumber: 235,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/vacantes.tsx",
-                                            lineNumber: 187,
+                                            lineNumber: 199,
                                             columnNumber: 19
                                         }, this)
                                     }, vacante.id, false, {
                                         fileName: "[project]/pages/vacantes.tsx",
-                                        lineNumber: 183,
+                                        lineNumber: 195,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/pages/vacantes.tsx",
-                                lineNumber: 172,
+                                lineNumber: 184,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/vacantes.tsx",
-                        lineNumber: 93,
+                        lineNumber: 105,
                         columnNumber: 9
                     }, this)
                 ]
@@ -1340,12 +1340,12 @@ function Vacantes() {
                         onClose: ()=>remove(toast.id)
                     }, toast.id, false, {
                         fileName: "[project]/pages/vacantes.tsx",
-                        lineNumber: 249,
+                        lineNumber: 255,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/pages/vacantes.tsx",
-                lineNumber: 247,
+                lineNumber: 253,
                 columnNumber: 7
             }, this)
         ]

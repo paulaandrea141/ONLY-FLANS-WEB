@@ -880,6 +880,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react/index.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/link.js [client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/router.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useCandidatos$2e$ts__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hooks/useCandidatos.ts [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$LoadingSkeleton$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/LoadingSkeleton.tsx [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$RadarScan$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/RadarScan.tsx [client] (ecmascript)");
@@ -890,11 +891,28 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function Candidatos() {
     _s();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const { candidatos, loading } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useCandidatos$2e$ts__$5b$client$5d$__$28$ecmascript$29$__["useCandidatos"])();
     const [filtroEtapa, setFiltroEtapa] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])('todos');
-    const filtrados = filtroEtapa === 'todos' ? candidatos : candidatos.filter((c)=>c.etapa === filtroEtapa);
+    const [filtroEmpresa, setFiltroEmpresa] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])('');
+    // Leer query param "empresa" de la URL
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Candidatos.useEffect": ()=>{
+            if (router.query.empresa) {
+                setFiltroEmpresa(router.query.empresa);
+            }
+        }
+    }["Candidatos.useEffect"], [
+        router.query.empresa
+    ]);
+    const filtrados = candidatos.filter((c)=>{
+        const matchEtapa = filtroEtapa === 'todos' || c.etapa === filtroEtapa;
+        const matchEmpresa = !filtroEmpresa || c.empresa?.toLowerCase().includes(filtroEmpresa.toLowerCase());
+        return matchEtapa && matchEmpresa;
+    });
     const etapaColors = {
         Prospecto: 'bg-blue-500/20 border-blue-500 text-blue-300',
         Calificado: 'bg-yellow-500/20 border-yellow-500 text-yellow-300',
@@ -930,20 +948,20 @@ function Candidatos() {
                         className: "absolute top-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
                     }, void 0, false, {
                         fileName: "[project]/pages/candidatos.tsx",
-                        lineNumber: 39,
+                        lineNumber: 55,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute bottom-0 left-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-700"
                     }, void 0, false, {
                         fileName: "[project]/pages/candidatos.tsx",
-                        lineNumber: 40,
+                        lineNumber: 56,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/candidatos.tsx",
-                lineNumber: 38,
+                lineNumber: 54,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -959,7 +977,7 @@ function Candidatos() {
                                     children: "👥 CANDIDATOS"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/candidatos.tsx",
-                                    lineNumber: 48,
+                                    lineNumber: 64,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -971,7 +989,7 @@ function Candidatos() {
                                             children: "📊 Dashboard"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/candidatos.tsx",
-                                            lineNumber: 54,
+                                            lineNumber: 70,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -980,7 +998,7 @@ function Candidatos() {
                                             children: "👥 Candidatos"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/candidatos.tsx",
-                                            lineNumber: 57,
+                                            lineNumber: 76,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -989,7 +1007,7 @@ function Candidatos() {
                                             children: "💼 Vacantes"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/candidatos.tsx",
-                                            lineNumber: 60,
+                                            lineNumber: 82,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -998,29 +1016,69 @@ function Candidatos() {
                                             children: "📞 Leads"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/candidatos.tsx",
-                                            lineNumber: 63,
+                                            lineNumber: 88,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/candidatos.tsx",
-                                    lineNumber: 53,
+                                    lineNumber: 69,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/candidatos.tsx",
-                            lineNumber: 47,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/candidatos.tsx",
-                        lineNumber: 46,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                         className: "max-w-7xl mx-auto px-6 py-8",
                         children: [
+                            filtroEmpresa && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mb-4 p-4 rounded-lg bg-yellow-500/20 border border-yellow-500 text-yellow-300 flex items-center justify-between",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-mono",
+                                        children: [
+                                            "🔍 Filtrando por empresa: ",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                children: filtroEmpresa
+                                            }, void 0, false, {
+                                                fileName: "[project]/pages/candidatos.tsx",
+                                                lineNumber: 103,
+                                                columnNumber: 43
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/pages/candidatos.tsx",
+                                        lineNumber: 102,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>{
+                                            setFiltroEmpresa('');
+                                            router.push('/candidatos', undefined, {
+                                                shallow: true
+                                            });
+                                        },
+                                        className: "px-3 py-1 bg-yellow-600 hover:bg-yellow-500 rounded text-sm font-bold transition",
+                                        children: "✕ Limpiar"
+                                    }, void 0, false, {
+                                        fileName: "[project]/pages/candidatos.tsx",
+                                        lineNumber: 105,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/pages/candidatos.tsx",
+                                lineNumber: 101,
+                                columnNumber: 13
+                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-1 md:grid-cols-3 gap-6 mb-8",
                                 children: stats.map((stat, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1031,7 +1089,7 @@ function Candidatos() {
                                                 children: stat.label
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/candidatos.tsx",
-                                                lineNumber: 78,
+                                                lineNumber: 124,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1043,18 +1101,18 @@ function Candidatos() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/candidatos.tsx",
-                                                lineNumber: 79,
+                                                lineNumber: 125,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, idx, true, {
                                         fileName: "[project]/pages/candidatos.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 120,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/pages/candidatos.tsx",
-                                lineNumber: 72,
+                                lineNumber: 118,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1072,23 +1130,23 @@ function Candidatos() {
                                         children: etapa.charAt(0).toUpperCase() + etapa.slice(1)
                                     }, etapa, false, {
                                         fileName: "[project]/pages/candidatos.tsx",
-                                        lineNumber: 90,
+                                        lineNumber: 136,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/pages/candidatos.tsx",
-                                lineNumber: 87,
+                                lineNumber: 133,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-4",
                                 children: loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$LoadingSkeleton$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["LoadingSkeleton"], {}, void 0, false, {
                                     fileName: "[project]/pages/candidatos.tsx",
-                                    lineNumber: 108,
+                                    lineNumber: 154,
                                     columnNumber: 15
                                 }, this) : filtrados.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$RadarScan$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["RadarScan"], {}, void 0, false, {
                                     fileName: "[project]/pages/candidatos.tsx",
-                                    lineNumber: 110,
+                                    lineNumber: 156,
                                     columnNumber: 15
                                 }, this) : filtrados.map((candidato)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "group relative overflow-hidden rounded-xl border border-purple-500/20 bg-gradient-to-r from-purple-600/10 via-black/50 to-pink-600/10 backdrop-blur-xl hover:border-purple-400/50 transition duration-300",
@@ -1103,7 +1161,7 @@ function Candidatos() {
                                                             children: candidato.nombre
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                            lineNumber: 119,
+                                                            lineNumber: 165,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1117,7 +1175,7 @@ function Candidatos() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                            lineNumber: 122,
+                                                            lineNumber: 168,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1130,7 +1188,7 @@ function Candidatos() {
                                                                             children: "EDAD"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 133,
+                                                                            lineNumber: 179,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1141,13 +1199,13 @@ function Candidatos() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 134,
+                                                                            lineNumber: 180,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/candidatos.tsx",
-                                                                    lineNumber: 132,
+                                                                    lineNumber: 178,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1157,7 +1215,7 @@ function Candidatos() {
                                                                             children: "COLONIA"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 137,
+                                                                            lineNumber: 183,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1165,13 +1223,13 @@ function Candidatos() {
                                                                             children: candidato.colonia
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 138,
+                                                                            lineNumber: 184,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/candidatos.tsx",
-                                                                    lineNumber: 136,
+                                                                    lineNumber: 182,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1181,7 +1239,7 @@ function Candidatos() {
                                                                             children: "FORMACIÓN"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 141,
+                                                                            lineNumber: 187,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1189,13 +1247,13 @@ function Candidatos() {
                                                                             children: candidato.formacion || '-'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 142,
+                                                                            lineNumber: 188,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/candidatos.tsx",
-                                                                    lineNumber: 140,
+                                                                    lineNumber: 186,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1205,7 +1263,7 @@ function Candidatos() {
                                                                             children: "SCORE"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 145,
+                                                                            lineNumber: 191,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1216,25 +1274,25 @@ function Candidatos() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                                            lineNumber: 146,
+                                                                            lineNumber: 192,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/candidatos.tsx",
-                                                                    lineNumber: 144,
+                                                                    lineNumber: 190,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                            lineNumber: 131,
+                                                            lineNumber: 177,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/candidatos.tsx",
-                                                    lineNumber: 118,
+                                                    lineNumber: 164,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1245,7 +1303,7 @@ function Candidatos() {
                                                             children: candidato.etapa
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                            lineNumber: 154,
+                                                            lineNumber: 198,
                                                             columnNumber: 23
                                                         }, this),
                                                         candidato.vacanteAsignada && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1256,52 +1314,53 @@ function Candidatos() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/candidatos.tsx",
-                                                            lineNumber: 163,
+                                                            lineNumber: 207,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/candidatos.tsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 197,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/candidatos.tsx",
-                                            lineNumber: 117,
+                                            lineNumber: 163,
                                             columnNumber: 19
                                         }, this)
                                     }, candidato.id, false, {
                                         fileName: "[project]/pages/candidatos.tsx",
-                                        lineNumber: 113,
+                                        lineNumber: 159,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/pages/candidatos.tsx",
-                                lineNumber: 106,
+                                lineNumber: 152,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/candidatos.tsx",
-                        lineNumber: 70,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/candidatos.tsx",
-                lineNumber: 44,
+                lineNumber: 60,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/candidatos.tsx",
-        lineNumber: 36,
+        lineNumber: 52,
         columnNumber: 5
     }, this);
 }
-_s(Candidatos, "wcGdcxBTnVnGun+R+vsPDL4rNTE=", false, function() {
+_s(Candidatos, "uYc/D3bGx68EzaKwctJ/M7UiVsQ=", false, function() {
     return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useCandidatos$2e$ts__$5b$client$5d$__$28$ecmascript$29$__["useCandidatos"]
     ];
 });

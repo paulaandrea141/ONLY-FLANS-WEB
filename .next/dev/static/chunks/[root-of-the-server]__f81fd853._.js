@@ -496,20 +496,20 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
         }
     }["LoadingBunker.useEffect"], []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "jsx-b6db0b2ffff7e285" + " " + "fixed inset-0 bg-black flex items-center justify-center z-50 overflow-hidden",
+        className: "jsx-10dfffe83ed29a88" + " " + "fixed inset-0 bg-black flex items-center justify-center z-50 overflow-hidden",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-b6db0b2ffff7e285" + " " + "absolute inset-0 pointer-events-none",
+                className: "jsx-10dfffe83ed29a88" + " " + "absolute inset-0 pointer-events-none",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-b6db0b2ffff7e285" + " " + "absolute top-1/4 left-1/4 w-96 h-96 bg-fuchsia-500/20 rounded-full blur-3xl animate-pulse"
+                        className: "jsx-10dfffe83ed29a88" + " " + "absolute top-1/4 left-1/4 w-96 h-96 bg-fuchsia-500/20 rounded-full blur-3xl animate-pulse"
                     }, void 0, false, {
                         fileName: "[project]/components/LoadingBunker.tsx",
                         lineNumber: 25,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-b6db0b2ffff7e285" + " " + "absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse delay-700"
+                        className: "jsx-10dfffe83ed29a88" + " " + "absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse delay-700"
                     }, void 0, false, {
                         fileName: "[project]/components/LoadingBunker.tsx",
                         lineNumber: 26,
@@ -522,7 +522,7 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-b6db0b2ffff7e285" + " " + "absolute inset-0 opacity-10",
+                className: "jsx-10dfffe83ed29a88" + " " + "absolute inset-0 opacity-10",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     style: {
                         backgroundImage: `
@@ -531,7 +531,7 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
             `,
                         backgroundSize: '50px 50px'
                     },
-                    className: "jsx-b6db0b2ffff7e285" + " " + "w-full h-full"
+                    className: "jsx-10dfffe83ed29a88" + " " + "w-full h-full"
                 }, void 0, false, {
                     fileName: "[project]/components/LoadingBunker.tsx",
                     lineNumber: 31,
@@ -543,32 +543,32 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-b6db0b2ffff7e285" + " " + "relative z-10 text-center space-y-8",
+                className: "jsx-10dfffe83ed29a88" + " " + "relative z-10 text-center space-y-8",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-b6db0b2ffff7e285" + " " + "relative w-32 h-32 mx-auto",
+                        className: "jsx-10dfffe83ed29a88" + " " + "relative w-32 h-32 mx-auto",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "jsx-b6db0b2ffff7e285" + " " + "absolute inset-0 border-4 border-fuchsia-500/30 rounded-full animate-spin-slow"
+                                className: "jsx-10dfffe83ed29a88" + " " + "absolute inset-0 border-4 border-fuchsia-500/30 rounded-full animate-spin-slow"
                             }, void 0, false, {
                                 fileName: "[project]/components/LoadingBunker.tsx",
                                 lineNumber: 48,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "jsx-b6db0b2ffff7e285" + " " + "absolute inset-2 border-4 border-cyan-500/30 rounded-full animate-spin-reverse"
+                                className: "jsx-10dfffe83ed29a88" + " " + "absolute inset-2 border-4 border-cyan-500/30 rounded-full animate-spin-reverse"
                             }, void 0, false, {
                                 fileName: "[project]/components/LoadingBunker.tsx",
                                 lineNumber: 51,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "jsx-b6db0b2ffff7e285" + " " + "absolute inset-0 flex items-center justify-center",
+                                className: "jsx-10dfffe83ed29a88" + " " + "absolute inset-0 flex items-center justify-center",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
                                         boxShadow: '0 0 40px rgba(236, 72, 153, 0.8), 0 0 80px rgba(0, 240, 255, 0.5)'
                                     },
-                                    className: "jsx-b6db0b2ffff7e285" + " " + "w-12 h-12 bg-gradient-to-br from-fuchsia-500 to-cyan-500 rounded-full animate-pulse"
+                                    className: "jsx-10dfffe83ed29a88" + " " + "w-12 h-12 bg-gradient-to-br from-fuchsia-500 to-cyan-500 rounded-full animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/components/LoadingBunker.tsx",
                                     lineNumber: 55,
@@ -588,10 +588,10 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
                                         transform: `rotate(${i * 60}deg) translateY(-60px)`,
                                         animationDelay: `${i * 0.2}s`
                                     },
-                                    className: "jsx-b6db0b2ffff7e285" + " " + "absolute w-2 h-2 bg-fuchsia-500 rounded-full animate-ping"
+                                    className: "jsx-10dfffe83ed29a88" + " " + "absolute w-2 h-2 bg-fuchsia-500 rounded-full animate-ping"
                                 }, i, false, {
                                     fileName: "[project]/components/LoadingBunker.tsx",
-                                    lineNumber: 61,
+                                    lineNumber: 65,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)))
                         ]
@@ -601,7 +601,7 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-b6db0b2ffff7e285" + " " + "space-y-4",
+                        className: "jsx-10dfffe83ed29a88" + " " + "space-y-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                 style: {
@@ -609,94 +609,94 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
                                     textShadow: '0 0 20px rgba(236, 72, 153, 0.8), 0 0 40px rgba(236, 72, 153, 0.5)',
                                     fontFamily: 'Orbitron, monospace'
                                 },
-                                className: "jsx-b6db0b2ffff7e285" + " " + "text-3xl font-black tracking-wider",
+                                className: "jsx-10dfffe83ed29a88" + " " + "text-3xl font-black tracking-wider",
                                 children: [
                                     message,
                                     dots
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/LoadingBunker.tsx",
-                                lineNumber: 76,
+                                lineNumber: 80,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             isError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "jsx-b6db0b2ffff7e285" + " " + "mt-6 space-y-2",
+                                className: "jsx-10dfffe83ed29a88" + " " + "mt-6 space-y-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "jsx-b6db0b2ffff7e285" + " " + "text-red-400 text-sm font-mono",
+                                        className: "jsx-10dfffe83ed29a88" + " " + "text-red-400 text-sm font-mono",
                                         children: "⚠️ ERROR DE CONEXIÓN"
                                     }, void 0, false, {
                                         fileName: "[project]/components/LoadingBunker.tsx",
-                                        lineNumber: 89,
+                                        lineNumber: 94,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "jsx-b6db0b2ffff7e285" + " " + "text-gray-500 text-xs",
+                                        className: "jsx-10dfffe83ed29a88" + " " + "text-gray-500 text-xs",
                                         children: "Verifica las credenciales de Firebase en .env.local"
                                     }, void 0, false, {
                                         fileName: "[project]/components/LoadingBunker.tsx",
-                                        lineNumber: 92,
+                                        lineNumber: 95,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/LoadingBunker.tsx",
-                                lineNumber: 88,
+                                lineNumber: 93,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             !isError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "jsx-b6db0b2ffff7e285" + " " + "flex items-center justify-center space-x-2 text-cyan-400 text-sm font-mono",
+                                className: "jsx-10dfffe83ed29a88" + " " + "flex items-center justify-center space-x-2 text-cyan-400 text-sm font-mono",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "jsx-b6db0b2ffff7e285" + " " + "w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
+                                        className: "jsx-10dfffe83ed29a88" + " " + "w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/components/LoadingBunker.tsx",
-                                        lineNumber: 100,
+                                        lineNumber: 103,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "jsx-b6db0b2ffff7e285",
+                                        className: "jsx-10dfffe83ed29a88",
                                         children: "SISTEMA TYRELL V2.0"
                                     }, void 0, false, {
                                         fileName: "[project]/components/LoadingBunker.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 104,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "jsx-b6db0b2ffff7e285" + " " + "w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-300"
+                                        className: "jsx-10dfffe83ed29a88" + " " + "w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-300"
                                     }, void 0, false, {
                                         fileName: "[project]/components/LoadingBunker.tsx",
-                                        lineNumber: 102,
+                                        lineNumber: 105,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/LoadingBunker.tsx",
-                                lineNumber: 99,
+                                lineNumber: 102,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/LoadingBunker.tsx",
-                        lineNumber: 75,
+                        lineNumber: 79,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-b6db0b2ffff7e285" + " " + "w-64 h-1 mx-auto bg-gray-800 rounded-full overflow-hidden",
+                        className: "jsx-10dfffe83ed29a88" + " " + "w-64 h-1 mx-auto bg-gray-800 rounded-full overflow-hidden",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             style: {
                                 width: '100%',
                                 boxShadow: '0 0 20px rgba(236, 72, 153, 0.8)'
                             },
-                            className: "jsx-b6db0b2ffff7e285" + " " + "h-full bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-500 animate-pulse"
+                            className: "jsx-10dfffe83ed29a88" + " " + "h-full bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-500 animate-pulse"
                         }, void 0, false, {
                             fileName: "[project]/components/LoadingBunker.tsx",
-                            lineNumber: 109,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/LoadingBunker.tsx",
-                        lineNumber: 108,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
@@ -706,8 +706,8 @@ const LoadingBunker = ({ message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
-                id: "b6db0b2ffff7e285",
-                children: "@keyframes spin-slow{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes spin-reverse{0%{transform:rotate(360deg)}to{transform:rotate(0)}}.animate-spin-slow.jsx-b6db0b2ffff7e285{animation:3s linear infinite spin-slow}.animate-spin-reverse.jsx-b6db0b2ffff7e285{animation:2s linear infinite spin-reverse}.delay-300.jsx-b6db0b2ffff7e285{animation-delay:.3s}.delay-700.jsx-b6db0b2ffff7e285{animation-delay:.7s}"
+                id: "10dfffe83ed29a88",
+                children: "@keyframes spin-slow{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes spin-reverse{0%{transform:rotate(360deg)}to{transform:rotate(0)}}.animate-spin-slow.jsx-10dfffe83ed29a88{animation:3s linear infinite spin-slow}.animate-spin-reverse.jsx-10dfffe83ed29a88{animation:2s linear infinite spin-reverse}.delay-300.jsx-10dfffe83ed29a88{animation-delay:.3s}.delay-700.jsx-10dfffe83ed29a88{animation-delay:.7s}"
             }, void 0, false, void 0, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
