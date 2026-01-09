@@ -1,8 +1,1 @@
-{
-  "/": "pages/index.js",
-  "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/candidatos": "pages/candidatos.js",
-  "/leads": "pages/leads.js",
-  "/vacantes": "pages/vacantes.js"
-}
+{}
