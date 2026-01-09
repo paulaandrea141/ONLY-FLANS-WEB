@@ -8,6 +8,7 @@ import { Toast, useToast } from '../components/Toast';
 import RistraCandidatos from '../components/RistraCandidatos';
 import FireballSwitch from '../components/FireballSwitch';
 import VoiceControl from '../components/VoiceControl';
+import HistorialChat from '../components/HistorialChat';
 import { validators } from '../lib/validators';
 import type { Vacante } from '../types';
 
@@ -22,6 +23,8 @@ export default function Dashboard() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [modoIngesta, setModoIngesta] = useState<'texto' | 'imagen' | 'voz'>('texto');
   const [autoPublicar, setAutoPublicar] = useState(false);
+  const [mostrarHistorial, setMostrarHistorial] = useState(true);
+  const [vacantesPendientes, setVacantesPendientes] = useState<any[]>([]);
   const [form, setForm] = useState({
     puesto: '',
     salario: '',
@@ -41,6 +44,16 @@ export default function Dashboard() {
     show('📸 Leyendo captura con Llama Vision...', 'info');
 
     try {
+      // Registrar en historial
+      await fetch('http://localhost:3000/api/historial/mensaje', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contenido: `📸 Captura subida: ${file.name}`,
+          tipoInput: 'imagen'
+        })
+      });
+
       const formData = new FormData();
       formData.append('imagen', file);
 
@@ -65,15 +78,38 @@ export default function Dashboard() {
 
         setTextoExtraido(result.textoExtraido);
         show(`✅ Captura leída: ${result.textoExtraido.length} caracteres extraídos`, 'success');
-        
-        // Auto-publicar si está activado
+
+        // Registrar respuesta IA en historial
         if (autoPublicar) {
+          const vacanteTemp = {
+            empresa: d.empresa,
+            ubicacion: d.ubicacion,
+            datos: d
+          };
+          setVacantesPendientes(prev => [...prev, vacanteTemp]);
+          
+          await fetch('http://localhost:3000/api/historial/mensaje', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contenido: `🧠 Bob: Jessica, detecté ${d.empresa}. Auto-publicando...`,
+              tipoInput: 'imagen'
+            })
+          });
+          
           setTimeout(() => {
             const formElement = document.querySelector('form');
             if (formElement) {
               formElement.requestSubmit();
             }
           }, 1500);
+        } else {
+          const vacanteTemp = {
+            empresa: d.empresa,
+            ubicacion: d.ubicacion,
+            datos: d
+          };
+          setVacantesPendientes(prev => [...prev, vacanteTemp]);
         }
       } else {
         show(`❌ ${result.error || 'No se pudo leer la imagen'}`, 'error');
@@ -797,6 +833,21 @@ export default function Dashboard() {
           </div>
         </main>
       </div>
+
+      {/* Chat Historial Panel */}
+      {mostrarHistorial && (
+        <div className="fixed right-0 top-0 h-screen w-96 z-50 border-l border-cyan-500/30">
+          <HistorialChat />
+        </div>
+      )}
+
+      {/* Toggle Chat Button */}
+      <button
+        onClick={() => setMostrarHistorial(!mostrarHistorial)}
+        className="fixed right-4 bottom-4 z-[60] bg-gradient-to-r from-orange-600 to-yellow-600 hover:from-orange-500 hover:to-yellow-500 text-white font-bold px-4 py-3 rounded-full shadow-2xl border-2 border-yellow-400/50 transition-all hover:scale-110"
+      >
+        {mostrarHistorial ? '👁️ Ocultar Chat' : '💬 Mostrar Chat'}
+      </button>
 
       {/* Toast Notifications */}
       <div className="fixed bottom-0 right-0 p-4 space-y-2 z-50">
