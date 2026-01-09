@@ -41,6 +41,7 @@ module.exports = {
         'loading-bar-1': 'loading-bar-1 2s ease-in-out infinite',
         'loading-bar-2': 'loading-bar-2 2s ease-in-out infinite',
         'loading-bar-3': 'loading-bar-3 2s ease-in-out infinite',
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       boxShadow: {
         'glow-cyan': '0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1)',

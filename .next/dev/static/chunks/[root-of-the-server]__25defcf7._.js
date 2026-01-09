@@ -792,7 +792,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
         Calificado: 'from-yellow-500/30 to-yellow-600/30 border-yellow-500/50 text-yellow-300',
         Asignado: 'from-purple-500/30 to-purple-600/30 border-purple-500/50 text-purple-300',
         Inductado: 'from-green-500/30 to-green-600/30 border-green-500/50 text-green-300',
-        Contratado: 'from-emerald-500/30 to-emerald-600/30 border-emerald-500/50 text-emerald-300',
+        Contratado: 'from-green-400 to-emerald-500 border-green-400 text-white shadow-[0_0_25px_rgba(34,197,94,0.8)]',
         Rechazado: 'from-red-500/30 to-red-600/30 border-red-500/50 text-red-300'
     };
     const handleScroll = (e)=>{
@@ -929,13 +929,13 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                 },
                                 className: "jsx-dd1b89f0228af521" + " " + "flex-shrink-0 w-80 group",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-dd1b89f0228af521" + " " + `relative h-full glass-neon rounded-xl p-6 border transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden group cursor-pointer`,
+                                    className: "jsx-dd1b89f0228af521" + " " + `relative h-full glass-neon rounded-xl p-6 border transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden group cursor-pointer ${candidato.etapa === 'Contratado' ? 'animate-pulse-slow' : ''}`,
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-dd1b89f0228af521" + " " + "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20 rounded-xl"
+                                            className: "jsx-dd1b89f0228af521" + " " + `absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl ${candidato.etapa === 'Contratado' ? 'bg-gradient-to-br from-green-400/30 via-emerald-500/20 to-green-600/30' : 'bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20'}`
                                         }, void 0, false, {
                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                            lineNumber: 129,
+                                            lineNumber: 131,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -952,7 +952,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     children: candidato.nombre
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 136,
+                                                                    lineNumber: 142,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -963,13 +963,13 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 139,
+                                                                    lineNumber: 145,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                            lineNumber: 135,
+                                                            lineNumber: 141,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -984,38 +984,41 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 147,
+                                                                    lineNumber: 153,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                lineNumber: 146,
+                                                                lineNumber: 152,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                            lineNumber: 145,
+                                                            lineNumber: 151,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                    lineNumber: 134,
+                                                    lineNumber: 140,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "jsx-dd1b89f0228af521" + " " + "mb-4",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "jsx-dd1b89f0228af521" + " " + `inline-block px-3 py-1 rounded-full text-xs font-bold border bg-gradient-to-r ${etapaColors[candidato.etapa] || 'from-gray-500/30 to-gray-600/30 border-gray-500/50 text-gray-300'}`,
-                                                        children: candidato.etapa
-                                                    }, void 0, false, {
+                                                        children: [
+                                                            candidato.etapa === 'Contratado' && '🎉 ',
+                                                            candidato.etapa
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/components/RistraCandidatos.tsx",
-                                                        lineNumber: 156,
+                                                        lineNumber: 162,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                    lineNumber: 155,
+                                                    lineNumber: 161,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1032,7 +1035,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     children: "📱"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 175,
+                                                                    lineNumber: 182,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1040,13 +1043,13 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     children: candidato.whatsapp
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 176,
+                                                                    lineNumber: 183,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                            lineNumber: 169,
+                                                            lineNumber: 176,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1060,7 +1063,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                             children: "EDAD"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                            lineNumber: 182,
+                                                                            lineNumber: 189,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1071,13 +1074,13 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                            lineNumber: 183,
+                                                                            lineNumber: 190,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 181,
+                                                                    lineNumber: 188,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1088,7 +1091,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                             children: "COLONIA"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                            lineNumber: 186,
+                                                                            lineNumber: 193,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1096,19 +1099,19 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                             children: candidato.colonia?.slice(0, 10)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                            lineNumber: 187,
+                                                                            lineNumber: 194,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 185,
+                                                                    lineNumber: 192,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                            lineNumber: 180,
+                                                            lineNumber: 187,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         candidato.vacanteAsignada && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1119,7 +1122,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     children: "VACANTE"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 196,
+                                                                    lineNumber: 203,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1127,19 +1130,19 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     children: candidato.vacanteAsignada
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 197,
+                                                                    lineNumber: 204,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                            lineNumber: 195,
+                                                            lineNumber: 202,
                                                             columnNumber: 25
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                    lineNumber: 167,
+                                                    lineNumber: 174,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1153,7 +1156,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     children: "Avance"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 207,
+                                                                    lineNumber: 214,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1164,13 +1167,13 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                    lineNumber: 208,
+                                                                    lineNumber: 215,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                            lineNumber: 206,
+                                                            lineNumber: 213,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1182,24 +1185,24 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                                 className: "jsx-dd1b89f0228af521" + " " + "h-full bg-gradient-to-r from-cyan-500 to-purple-500 transition-all duration-500 rounded-full"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/RistraCandidatos.tsx",
-                                                                lineNumber: 213,
+                                                                lineNumber: 220,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                                            lineNumber: 212,
+                                                            lineNumber: 219,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/RistraCandidatos.tsx",
-                                                    lineNumber: 205,
+                                                    lineNumber: 212,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                            lineNumber: 132,
+                                            lineNumber: 138,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1208,12 +1211,12 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                                 className: "jsx-dd1b89f0228af521" + " " + "absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/RistraCandidatos.tsx",
-                                                lineNumber: 223,
+                                                lineNumber: 230,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/components/RistraCandidatos.tsx",
-                                            lineNumber: 222,
+                                            lineNumber: 229,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
@@ -1239,12 +1242,12 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                             children: "▶"
                         }, void 0, false, {
                             fileName: "[project]/components/RistraCandidatos.tsx",
-                            lineNumber: 234,
+                            lineNumber: 241,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/RistraCandidatos.tsx",
-                        lineNumber: 233,
+                        lineNumber: 240,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
@@ -1284,7 +1287,7 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                 children: stat.label
                             }, void 0, false, {
                                 fileName: "[project]/components/RistraCandidatos.tsx",
-                                lineNumber: 251,
+                                lineNumber: 258,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1292,18 +1295,18 @@ const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' })=>{
                                 children: stat.count
                             }, void 0, false, {
                                 fileName: "[project]/components/RistraCandidatos.tsx",
-                                lineNumber: 252,
+                                lineNumber: 259,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, idx, true, {
                         fileName: "[project]/components/RistraCandidatos.tsx",
-                        lineNumber: 247,
+                        lineNumber: 254,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)))
             }, void 0, false, {
                 fileName: "[project]/components/RistraCandidatos.tsx",
-                lineNumber: 240,
+                lineNumber: 247,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1971,6 +1974,99 @@ function Dashboard() {
                                                 lineNumber: 226,
                                                 columnNumber: 15
                                             }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "mb-6 p-6 rounded-xl bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border-2 border-dashed border-orange-500/30 hover:border-orange-400 transition duration-300",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex items-center gap-3 mb-3",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-2xl",
+                                                                children: "🧠"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/pages/index.tsx",
+                                                                lineNumber: 233,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                                        className: "text-lg font-bold text-orange-400",
+                                                                        children: "INGESTA INTELIGENTE"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/pages/index.tsx",
+                                                                        lineNumber: 235,
+                                                                        columnNumber: 21
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                        className: "text-orange-300/60 text-sm font-mono",
+                                                                        children: "Pega el texto caótico del jefe aquí y la IA lo procesará"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/pages/index.tsx",
+                                                                        lineNumber: 236,
+                                                                        columnNumber: 21
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/pages/index.tsx",
+                                                                lineNumber: 234,
+                                                                columnNumber: 19
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/pages/index.tsx",
+                                                        lineNumber: 232,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                                        id: "ingesta-texto",
+                                                        placeholder: "Ejemplo: 'urge operario en DAMAR sueldo 10k turno matutino ruta desde cumbres req secundaria'",
+                                                        className: "w-full bg-black/50 border border-orange-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-500/50 backdrop-blur-sm transition font-mono text-sm min-h-[100px]",
+                                                        onPaste: async (e)=>{
+                                                            const texto = e.clipboardData.getData('text');
+                                                            if (texto.trim().length > 20) {
+                                                                show('🔍 Analizando texto con IA...', 'info');
+                                                                try {
+                                                                    const res = await fetch('http://localhost:3000/api/vacantes/extract', {
+                                                                        method: 'POST',
+                                                                        headers: {
+                                                                            'Content-Type': 'application/json'
+                                                                        },
+                                                                        body: JSON.stringify({
+                                                                            texto
+                                                                        })
+                                                                    });
+                                                                    const result = await res.json();
+                                                                    if (result.success && result.datos) {
+                                                                        const d = result.datos;
+                                                                        setForm({
+                                                                            puesto: d.puesto || '',
+                                                                            salario: d.salario || '',
+                                                                            experiencia: d.requisitos || '',
+                                                                            descripcion: `${d.empresa} - ${d.ubicacion}\n${d.horario}\n${d.rutas_transporte}`,
+                                                                            requisitos: d.requisitos || ''
+                                                                        });
+                                                                        show('✅ Vacante auto-rellenada. Revisa y guarda.', 'success');
+                                                                        document.getElementById('ingesta-texto').value = '';
+                                                                    } else {
+                                                                        show(`⚠️ ${result.error || 'No se pudo extraer datos'}`, 'error');
+                                                                    }
+                                                                } catch (error) {
+                                                                    show('❌ Error al comunicarse con IA', 'error');
+                                                                }
+                                                            }
+                                                        }
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/pages/index.tsx",
+                                                        lineNumber: 241,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/pages/index.tsx",
+                                                lineNumber: 231,
+                                                columnNumber: 15
+                                            }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                                                 onSubmit: handleSave,
                                                 className: "space-y-4",
@@ -1989,7 +2085,7 @@ function Dashboard() {
                                                                 className: "bg-black/50 border border-cyan-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/50 backdrop-blur-sm transition"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 232,
+                                                                lineNumber: 284,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2003,7 +2099,7 @@ function Dashboard() {
                                                                 className: "bg-black/50 border border-cyan-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/50 backdrop-blur-sm transition"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 239,
+                                                                lineNumber: 291,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2017,7 +2113,7 @@ function Dashboard() {
                                                                 className: "bg-black/50 border border-cyan-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/50 backdrop-blur-sm transition"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 246,
+                                                                lineNumber: 298,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2031,13 +2127,13 @@ function Dashboard() {
                                                                 className: "bg-black/50 border border-cyan-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/50 backdrop-blur-sm transition"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 253,
+                                                                lineNumber: 305,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/pages/index.tsx",
-                                                        lineNumber: 231,
+                                                        lineNumber: 283,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -2051,7 +2147,7 @@ function Dashboard() {
                                                         className: "w-full bg-black/50 border border-cyan-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/50 backdrop-blur-sm transition"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/index.tsx",
-                                                        lineNumber: 262,
+                                                        lineNumber: 314,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2065,7 +2161,7 @@ function Dashboard() {
                                                                         className: "absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition duration-300"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/index.tsx",
-                                                                        lineNumber: 275,
+                                                                        lineNumber: 327,
                                                                         columnNumber: 21
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2073,13 +2169,13 @@ function Dashboard() {
                                                                         children: editingId ? '💾 ACTUALIZAR' : '➕ AGREGAR'
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/index.tsx",
-                                                                        lineNumber: 276,
+                                                                        lineNumber: 328,
                                                                         columnNumber: 21
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 271,
+                                                                lineNumber: 323,
                                                                 columnNumber: 19
                                                             }, this),
                                                             editingId && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2098,19 +2194,19 @@ function Dashboard() {
                                                                 children: "❌ CANCELAR"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 281,
+                                                                lineNumber: 333,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/pages/index.tsx",
-                                                        lineNumber: 270,
+                                                        lineNumber: 322,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/index.tsx",
-                                                lineNumber: 230,
+                                                lineNumber: 282,
                                                 columnNumber: 15
                                             }, this)
                                         ]
@@ -2135,12 +2231,12 @@ function Dashboard() {
                                             children: "📌 VACANTES ACTIVAS"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/index.tsx",
-                                            lineNumber: 306,
+                                            lineNumber: 358,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 357,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2149,12 +2245,12 @@ function Dashboard() {
                                             className: "p-8",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$LoadingSkeleton$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["LoadingSkeleton"], {}, void 0, false, {
                                                 fileName: "[project]/pages/index.tsx",
-                                                lineNumber: 314,
+                                                lineNumber: 366,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/pages/index.tsx",
-                                            lineNumber: 313,
+                                            lineNumber: 365,
                                             columnNumber: 17
                                         }, this) : vacantes.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "p-8 text-center",
@@ -2163,12 +2259,12 @@ function Dashboard() {
                                                 children: "Sin vacantes. Pega las que tu jefe te envíe por WhatsApp 📱"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/index.tsx",
-                                                lineNumber: 318,
+                                                lineNumber: 370,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/pages/index.tsx",
-                                            lineNumber: 317,
+                                            lineNumber: 369,
                                             columnNumber: 17
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
                                             className: "w-full",
@@ -2182,7 +2278,7 @@ function Dashboard() {
                                                                 children: "PUESTO"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 326,
+                                                                lineNumber: 378,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2190,7 +2286,7 @@ function Dashboard() {
                                                                 children: "SALARIO"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 329,
+                                                                lineNumber: 381,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2198,7 +2294,7 @@ function Dashboard() {
                                                                 children: "EXP."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 332,
+                                                                lineNumber: 384,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2206,7 +2302,7 @@ function Dashboard() {
                                                                 children: "DESCRIPCIÓN"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 335,
+                                                                lineNumber: 387,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2214,18 +2310,18 @@ function Dashboard() {
                                                                 children: "ACCIONES"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/index.tsx",
-                                                                lineNumber: 338,
+                                                                lineNumber: 390,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/pages/index.tsx",
-                                                        lineNumber: 325,
+                                                        lineNumber: 377,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/index.tsx",
-                                                    lineNumber: 324,
+                                                    lineNumber: 376,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2237,7 +2333,7 @@ function Dashboard() {
                                                                     children: vacante.puesto
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/index.tsx",
-                                                                    lineNumber: 349,
+                                                                    lineNumber: 401,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2248,7 +2344,7 @@ function Dashboard() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/index.tsx",
-                                                                    lineNumber: 352,
+                                                                    lineNumber: 404,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2256,7 +2352,7 @@ function Dashboard() {
                                                                     children: vacante.experiencia || '-'
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/index.tsx",
-                                                                    lineNumber: 355,
+                                                                    lineNumber: 407,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2264,7 +2360,7 @@ function Dashboard() {
                                                                     children: vacante.descripcion
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/index.tsx",
-                                                                    lineNumber: 358,
+                                                                    lineNumber: 410,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2276,7 +2372,7 @@ function Dashboard() {
                                                                             children: "✏️"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/index.tsx",
-                                                                            lineNumber: 362,
+                                                                            lineNumber: 414,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2285,41 +2381,41 @@ function Dashboard() {
                                                                             children: "🗑️"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/index.tsx",
-                                                                            lineNumber: 368,
+                                                                            lineNumber: 420,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/pages/index.tsx",
-                                                                    lineNumber: 361,
+                                                                    lineNumber: 413,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, vacante.id, true, {
                                                             fileName: "[project]/pages/index.tsx",
-                                                            lineNumber: 345,
+                                                            lineNumber: 397,
                                                             columnNumber: 23
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/index.tsx",
-                                                    lineNumber: 343,
+                                                    lineNumber: 395,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/index.tsx",
-                                            lineNumber: 323,
+                                            lineNumber: 375,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.tsx",
-                                        lineNumber: 311,
+                                        lineNumber: 363,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/index.tsx",
-                                lineNumber: 304,
+                                lineNumber: 356,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2329,7 +2425,7 @@ function Dashboard() {
                                         className: "absolute inset-0 bg-gradient-to-r from-cyan-600/10 via-transparent to-purple-600/10 opacity-0 group-hover:opacity-100 transition duration-500"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.tsx",
-                                        lineNumber: 385,
+                                        lineNumber: 437,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2337,13 +2433,13 @@ function Dashboard() {
                                         children: "💡 El bot 🤖 leerá automáticamente estas vacantes y comenzará a reclutar en WhatsApp"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.tsx",
-                                        lineNumber: 386,
+                                        lineNumber: 438,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/index.tsx",
-                                lineNumber: 384,
+                                lineNumber: 436,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -2366,12 +2462,12 @@ function Dashboard() {
                         onClose: ()=>remove(toast.id)
                     }, toast.id, false, {
                         fileName: "[project]/pages/index.tsx",
-                        lineNumber: 397,
+                        lineNumber: 449,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/pages/index.tsx",
-                lineNumber: 395,
+                lineNumber: 447,
                 columnNumber: 7
             }, this)
         ]

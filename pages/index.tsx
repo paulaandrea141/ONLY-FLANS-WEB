@@ -227,6 +227,58 @@ export default function Dashboard() {
                 {editingId ? '⚡ EDITAR VACANTE' : '➕ NUEVA VACANTE'}
               </h2>
 
+              {/* 🧠 ZONA DE INGESTA INTELIGENTE */}
+              <div className="mb-6 p-6 rounded-xl bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border-2 border-dashed border-orange-500/30 hover:border-orange-400 transition duration-300">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🧠</span>
+                  <div>
+                    <h3 className="text-lg font-bold text-orange-400">INGESTA INTELIGENTE</h3>
+                    <p className="text-orange-300/60 text-sm font-mono">
+                      Pega el texto caótico del jefe aquí y la IA lo procesará
+                    </p>
+                  </div>
+                </div>
+                <textarea
+                  id="ingesta-texto"
+                  placeholder="Ejemplo: 'urge operario en DAMAR sueldo 10k turno matutino ruta desde cumbres req secundaria'"
+                  className="w-full bg-black/50 border border-orange-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-500/50 backdrop-blur-sm transition font-mono text-sm min-h-[100px]"
+                  onPaste={async (e) => {
+                    const texto = e.clipboardData.getData('text');
+                    if (texto.trim().length > 20) {
+                      show('🔍 Analizando texto con IA...', 'info');
+                      
+                      try {
+                        const res = await fetch('http://localhost:3000/api/vacantes/extract', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ texto }),
+                        });
+
+                        const result = await res.json();
+
+                        if (result.success && result.datos) {
+                          const d = result.datos;
+                          setForm({
+                            puesto: d.puesto || '',
+                            salario: d.salario || '',
+                            experiencia: d.requisitos || '',
+                            descripcion: `${d.empresa} - ${d.ubicacion}\n${d.horario}\n${d.rutas_transporte}`,
+                            requisitos: d.requisitos || '',
+                          });
+
+                          show('✅ Vacante auto-rellenada. Revisa y guarda.', 'success');
+                          document.getElementById('ingesta-texto')!.value = '';
+                        } else {
+                          show(`⚠️ ${result.error || 'No se pudo extraer datos'}`, 'error');
+                        }
+                      } catch (error) {
+                        show('❌ Error al comunicarse con IA', 'error');
+                      }
+                    }
+                  }}
+                />
+              </div>
+
               <form onSubmit={handleSave} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input

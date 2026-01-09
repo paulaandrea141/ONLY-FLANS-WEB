@@ -51,7 +51,7 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
     Calificado: 'from-yellow-500/30 to-yellow-600/30 border-yellow-500/50 text-yellow-300',
     Asignado: 'from-purple-500/30 to-purple-600/30 border-purple-500/50 text-purple-300',
     Inductado: 'from-green-500/30 to-green-600/30 border-green-500/50 text-green-300',
-    Contratado: 'from-emerald-500/30 to-emerald-600/30 border-emerald-500/50 text-emerald-300',
+    Contratado: 'from-green-400 to-emerald-500 border-green-400 text-white shadow-[0_0_25px_rgba(34,197,94,0.8)]',
     Rechazado: 'from-red-500/30 to-red-600/30 border-red-500/50 text-red-300',
   };
 
@@ -123,10 +123,16 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
               >
                 {/* Card */}
                 <div
-                  className={`relative h-full glass-neon rounded-xl p-6 border transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden group cursor-pointer`}
+                  className={`relative h-full glass-neon rounded-xl p-6 border transition-all duration-300 hover:scale-105 hover:shadow-lg overflow-hidden group cursor-pointer ${
+                    candidato.etapa === 'Contratado' ? 'animate-pulse-slow' : ''
+                  }`}
                 >
                   {/* Glow effect on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20 rounded-xl" />
+                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl ${
+                    candidato.etapa === 'Contratado' 
+                      ? 'bg-gradient-to-br from-green-400/30 via-emerald-500/20 to-green-600/30'
+                      : 'bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20'
+                  }`} />
 
                   {/* Content */}
                   <div className="relative z-10">
@@ -159,6 +165,7 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
                           'from-gray-500/30 to-gray-600/30 border-gray-500/50 text-gray-300'
                         }`}
                       >
+                        {candidato.etapa === 'Contratado' && '🎉 '}
                         {candidato.etapa}
                       </span>
                     </div>
