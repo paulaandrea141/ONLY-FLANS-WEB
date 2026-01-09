@@ -74,7 +74,7 @@ INSTRUCCIONES CRÍTICAS:
       const response = await fetch(this.apiBase, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
+          Authorization: `Bearer ${this.apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -145,7 +145,7 @@ Requisitos:
       const response = await fetch(this.apiBase, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
+          Authorization: `Bearer ${this.apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -200,7 +200,7 @@ Responde EXACTAMENTE en JSON:
       const response = await fetch(this.apiBase, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
+          Authorization: `Bearer ${this.apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -222,7 +222,10 @@ Responde EXACTAMENTE en JSON:
 
       const data = await response.json();
       const content = data.choices[0]?.message?.content || '';
-      const jsonStr = content.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+      const jsonStr = content
+        .replace(/```json\n?/g, '')
+        .replace(/```\n?/g, '')
+        .trim();
       return JSON.parse(jsonStr);
     } catch (error) {
       console.error('Error analizando feedback:', error);

@@ -7,7 +7,7 @@ interface VoiceControlProps {
 /**
  * 🎤 CONTROL DE VOZ - CORP. TYRELL
  * Tech Lead: Paula Specter (@SpecterTech)
- * 
+ *
  * Usa Web Speech API (GRATIS, nativa del navegador)
  * Reconocimiento en español mexicano
  */
@@ -82,9 +82,7 @@ export default function VoiceControl({ onVoiceCommand }: VoiceControlProps) {
 
       {transcript && (
         <div className="flex-1 px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-          <p className="text-blue-400 text-sm font-mono">
-            📝 "{transcript}"
-          </p>
+          <p className="text-blue-400 text-sm font-mono">📝 "{transcript}"</p>
         </div>
       )}
     </div>

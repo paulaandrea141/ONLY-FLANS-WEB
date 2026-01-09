@@ -20,8 +20,8 @@ export default function Candidatos() {
 
   const filtrados = candidatos.filter((c) => {
     const matchEtapa = filtroEtapa === 'todos' || c.etapa === filtroEtapa;
-    const matchEmpresa = !filtroEmpresa || 
-      c.empresa?.toLowerCase().includes(filtroEmpresa.toLowerCase());
+    const matchEmpresa =
+      !filtroEmpresa || c.empresa?.toLowerCase().includes(filtroEmpresa.toLowerCase());
     return matchEtapa && matchEmpresa;
   });
 
@@ -36,7 +36,11 @@ export default function Candidatos() {
 
   const stats = [
     { label: 'Total', value: candidatos.length, icon: '👥' },
-    { label: 'Prospectos', value: candidatos.filter((c) => c.etapa === 'Prospecto').length, icon: '🔍' },
+    {
+      label: 'Prospectos',
+      value: candidatos.filter((c) => c.etapa === 'Prospecto').length,
+      icon: '🔍',
+    },
     {
       label: 'Contratados',
       value: candidatos.filter((c) => c.etapa === 'Contratado').length,
@@ -63,16 +67,28 @@ export default function Candidatos() {
 
             {/* Navigation */}
             <div className="flex gap-4 flex-wrap">
-              <Link href="/" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-purple-500/30 text-purple-300 hover:border-purple-400 cursor-pointer transition inline-block">
+              <Link
+                href="/"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-purple-500/30 text-purple-300 hover:border-purple-400 cursor-pointer transition inline-block"
+              >
                 📊 Dashboard
               </Link>
-              <Link href="/candidatos" className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-purple-600 to-pink-600 text-white border border-purple-400 cursor-pointer hover:shadow-lg hover:shadow-purple-500/50 transition inline-block">
+              <Link
+                href="/candidatos"
+                className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-purple-600 to-pink-600 text-white border border-purple-400 cursor-pointer hover:shadow-lg hover:shadow-purple-500/50 transition inline-block"
+              >
                 👥 Candidatos
               </Link>
-              <Link href="/vacantes" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-purple-500/30 text-purple-300 hover:border-purple-400 cursor-pointer transition inline-block">
+              <Link
+                href="/vacantes"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-purple-500/30 text-purple-300 hover:border-purple-400 cursor-pointer transition inline-block"
+              >
                 💼 Vacantes
               </Link>
-              <Link href="/leads" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-purple-500/30 text-purple-300 hover:border-purple-400 cursor-pointer transition inline-block">
+              <Link
+                href="/leads"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-purple-500/30 text-purple-300 hover:border-purple-400 cursor-pointer transition inline-block"
+              >
                 📞 Leads
               </Link>
             </div>
@@ -173,9 +189,7 @@ export default function Candidatos() {
                         </div>
                         <div>
                           <p className="text-purple-300/50 font-mono text-xs">SCORE</p>
-                          <p className="text-purple-300 font-bold">
-                            {candidato.score || 0}%
-                          </p>
+                          <p className="text-purple-300 font-bold">{candidato.score || 0}%</p>
                         </div>
                       </div>
                     </div>
@@ -203,4 +217,5 @@ export default function Candidatos() {
         </main>
       </div>
     </div>
-  );}
+  );
+}

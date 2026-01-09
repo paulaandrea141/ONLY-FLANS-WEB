@@ -16,11 +16,7 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
 
   useEffect(() => {
     setLoading(true);
-    const q = query(
-      collection(db, 'candidatos'),
-      orderBy('createdAt', 'desc'),
-      limit(maxItems)
-    );
+    const q = query(collection(db, 'candidatos'), orderBy('createdAt', 'desc'), limit(maxItems));
 
     const unsubscribe = onSnapshot(
       q,
@@ -51,7 +47,8 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
     Calificado: 'from-yellow-500/30 to-yellow-600/30 border-yellow-500/50 text-yellow-300',
     Asignado: 'from-purple-500/30 to-purple-600/30 border-purple-500/50 text-purple-300',
     Inductado: 'from-green-500/30 to-green-600/30 border-green-500/50 text-green-300',
-    Contratado: 'from-green-400 to-emerald-500 border-green-400 text-white shadow-[0_0_25px_rgba(34,197,94,0.8)]',
+    Contratado:
+      'from-green-400 to-emerald-500 border-green-400 text-white shadow-[0_0_25px_rgba(34,197,94,0.8)]',
     Rechazado: 'from-red-500/30 to-red-600/30 border-red-500/50 text-red-300',
   };
 
@@ -107,9 +104,7 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
         >
           {filtrados.length === 0 ? (
             <div className="w-full h-32 glass flex items-center justify-center rounded-xl">
-              <p className="text-cyan-300/50 font-mono">
-                No hay candidatos con este filtro
-              </p>
+              <p className="text-cyan-300/50 font-mono">No hay candidatos con este filtro</p>
             </div>
           ) : (
             filtrados.map((candidato, idx) => (
@@ -128,11 +123,13 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
                   }`}
                 >
                   {/* Glow effect on hover */}
-                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl ${
-                    candidato.etapa === 'Contratado' 
-                      ? 'bg-gradient-to-br from-green-400/30 via-emerald-500/20 to-green-600/30'
-                      : 'bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20'
-                  }`} />
+                  <div
+                    className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl ${
+                      candidato.etapa === 'Contratado'
+                        ? 'bg-gradient-to-br from-green-400/30 via-emerald-500/20 to-green-600/30'
+                        : 'bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20'
+                    }`}
+                  />
 
                   {/* Content */}
                   <div className="relative z-10">
@@ -246,10 +243,26 @@ export const RistraCandidatos = ({ maxItems = 10, filtroEtapa = 'todos' }: Ristr
       {/* Stats Footer */}
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {[
-          { label: 'Prospectos', count: filtrados.filter((c) => c.etapa === 'Prospecto').length, color: 'from-blue-500/20 to-blue-600/20 border-blue-500/30' },
-          { label: 'Calificados', count: filtrados.filter((c) => c.etapa === 'Calificado').length, color: 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30' },
-          { label: 'Asignados', count: filtrados.filter((c) => c.etapa === 'Asignado').length, color: 'from-purple-500/20 to-purple-600/20 border-purple-500/30' },
-          { label: 'Contratados', count: filtrados.filter((c) => c.etapa === 'Contratado').length, color: 'from-green-500/20 to-green-600/20 border-green-500/30' },
+          {
+            label: 'Prospectos',
+            count: filtrados.filter((c) => c.etapa === 'Prospecto').length,
+            color: 'from-blue-500/20 to-blue-600/20 border-blue-500/30',
+          },
+          {
+            label: 'Calificados',
+            count: filtrados.filter((c) => c.etapa === 'Calificado').length,
+            color: 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30',
+          },
+          {
+            label: 'Asignados',
+            count: filtrados.filter((c) => c.etapa === 'Asignado').length,
+            color: 'from-purple-500/20 to-purple-600/20 border-purple-500/30',
+          },
+          {
+            label: 'Contratados',
+            count: filtrados.filter((c) => c.etapa === 'Contratado').length,
+            color: 'from-green-500/20 to-green-600/20 border-green-500/30',
+          },
         ].map((stat, idx) => (
           <div
             key={idx}

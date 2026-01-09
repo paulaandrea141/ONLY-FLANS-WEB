@@ -13,9 +13,7 @@ export default function LeadsPage() {
   const [filtroStatus, setFiltroStatus] = useState<string>('todos');
 
   const filtrados =
-    filtroStatus === 'todos'
-      ? leads
-      : leads.filter((l) => l.status === filtroStatus);
+    filtroStatus === 'todos' ? leads : leads.filter((l) => l.status === filtroStatus);
 
   const stats = [
     { label: 'Total Leads', value: leads.length, color: 'from-blue-500 to-blue-600', icon: '📊' },
@@ -97,16 +95,28 @@ export default function LeadsPage() {
 
             {/* Navigation */}
             <div className="flex gap-4 flex-wrap">
-              <Link href="/" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block">
+              <Link
+                href="/"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block"
+              >
                 📊 Dashboard
               </Link>
-              <Link href="/candidatos" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block">
+              <Link
+                href="/candidatos"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block"
+              >
                 👥 Candidatos
               </Link>
-              <Link href="/vacantes" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block">
+              <Link
+                href="/vacantes"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-blue-500/30 text-blue-300 hover:border-blue-400 cursor-pointer transition inline-block"
+              >
                 💼 Vacantes
               </Link>
-              <Link href="/leads" className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-blue-600 to-green-600 text-white border border-blue-400 cursor-pointer hover:shadow-lg hover:shadow-blue-500/50 transition inline-block">
+              <Link
+                href="/leads"
+                className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-blue-600 to-green-600 text-white border border-blue-400 cursor-pointer hover:shadow-lg hover:shadow-blue-500/50 transition inline-block"
+              >
                 📞 Leads
               </Link>
             </div>
@@ -122,7 +132,9 @@ export default function LeadsPage() {
                 className={`relative overflow-hidden rounded-xl border border-blue-500/30 bg-gradient-to-br ${stat.color} p-0.5 group`}
               >
                 <div className="relative bg-black/80 backdrop-blur-xl rounded-lg p-6 h-32 flex flex-col justify-center hover:bg-black/60 transition duration-300">
-                  <p className="text-blue-300 text-sm font-mono">{stat.icon} {stat.label}</p>
+                  <p className="text-blue-300 text-sm font-mono">
+                    {stat.icon} {stat.label}
+                  </p>
                   <p className="text-3xl font-black text-white mt-2">{stat.value}</p>
                 </div>
               </div>
@@ -161,9 +173,7 @@ export default function LeadsPage() {
                 </div>
               ) : filtrados.length === 0 ? (
                 <div className="p-8 text-center">
-                  <p className="text-blue-300/50 font-mono">
-                    No hay leads con este filtro
-                  </p>
+                  <p className="text-blue-300/50 font-mono">No hay leads con este filtro</p>
                 </div>
               ) : (
                 <table className="w-full">
@@ -260,4 +270,3 @@ export default function LeadsPage() {
     </div>
   );
 }
-

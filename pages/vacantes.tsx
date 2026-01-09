@@ -74,16 +74,28 @@ export default function Vacantes() {
 
             {/* Navigation */}
             <div className="flex gap-4 flex-wrap">
-              <Link href="/" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-green-500/30 text-green-300 hover:border-green-400 cursor-pointer transition inline-block">
+              <Link
+                href="/"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-green-500/30 text-green-300 hover:border-green-400 cursor-pointer transition inline-block"
+              >
                 📊 Dashboard
               </Link>
-              <Link href="/candidatos" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-green-500/30 text-green-300 hover:border-green-400 cursor-pointer transition inline-block">
+              <Link
+                href="/candidatos"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-green-500/30 text-green-300 hover:border-green-400 cursor-pointer transition inline-block"
+              >
                 👥 Candidatos
               </Link>
-              <Link href="/vacantes" className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-green-600 to-emerald-600 text-white border border-green-400 cursor-pointer hover:shadow-lg hover:shadow-green-500/50 transition inline-block">
+              <Link
+                href="/vacantes"
+                className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-green-600 to-emerald-600 text-white border border-green-400 cursor-pointer hover:shadow-lg hover:shadow-green-500/50 transition inline-block"
+              >
                 💼 Vacantes
               </Link>
-              <Link href="/leads" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-green-500/30 text-green-300 hover:border-green-400 cursor-pointer transition inline-block">
+              <Link
+                href="/leads"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-green-500/30 text-green-300 hover:border-green-400 cursor-pointer transition inline-block"
+              >
                 📞 Leads
               </Link>
             </div>
@@ -194,9 +206,7 @@ export default function Vacantes() {
                           {vacante.estado || 'Activa'}
                         </span>
                       </div>
-                      <p className="text-green-400 font-bold text-lg mb-4">
-                        {vacante.puesto}
-                      </p>
+                      <p className="text-green-400 font-bold text-lg mb-4">{vacante.puesto}</p>
 
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                         <div>
@@ -207,15 +217,11 @@ export default function Vacantes() {
                         </div>
                         <div>
                           <p className="text-green-300/50 font-mono text-xs">COLONIA</p>
-                          <p className="text-white font-bold">
-                            {vacante.colonias?.[0] || 'N/A'}
-                          </p>
+                          <p className="text-white font-bold">{vacante.colonias?.[0] || 'N/A'}</p>
                         </div>
                         <div>
                           <p className="text-green-300/50 font-mono text-xs">CANDIDATOS</p>
-                          <p className="text-white font-bold">
-                            {vacante.candidatosAsignados || 0}
-                          </p>
+                          <p className="text-white font-bold">{vacante.candidatosAsignados || 0}</p>
                         </div>
                         <div>
                           <p className="text-green-300/50 font-mono text-xs">GÉNERO</p>

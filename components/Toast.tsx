@@ -9,12 +9,7 @@ interface ToastProps {
   onClose?: () => void;
 }
 
-export const Toast = ({
-  message,
-  type = 'info',
-  duration = 3000,
-  onClose,
-}: ToastProps) => {
+export const Toast = ({ message, type = 'info', duration = 3000, onClose }: ToastProps) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -55,11 +50,13 @@ export const Toast = ({
 };
 
 export const useToast = () => {
-  const [toasts, setToasts] = useState<Array<{
-    id: string;
-    message: string;
-    type: ToastType;
-  }>>([]);
+  const [toasts, setToasts] = useState<
+    Array<{
+      id: string;
+      message: string;
+      type: ToastType;
+    }>
+  >([]);
 
   const show = (message: string, type: ToastType = 'info') => {
     const id = Math.random().toString(36);

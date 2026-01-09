@@ -5,9 +5,9 @@ interface LoadingBunkerProps {
   isError?: boolean;
 }
 
-export const LoadingBunker = ({ 
-  message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...', 
-  isError = false 
+export const LoadingBunker = ({
+  message = 'ESTABLECIENDO CONEXIÓN CON EL BÚNKER...',
+  isError = false,
 }: LoadingBunkerProps) => {
   const [dots, setDots] = useState('');
 
@@ -46,14 +46,18 @@ export const LoadingBunker = ({
         <div className="relative w-32 h-32 mx-auto">
           {/* Outer Ring */}
           <div className="absolute inset-0 border-4 border-fuchsia-500/30 rounded-full animate-spin-slow" />
-          
+
           {/* Middle Ring */}
           <div className="absolute inset-2 border-4 border-cyan-500/30 rounded-full animate-spin-reverse" />
-          
+
           {/* Inner Core */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 bg-gradient-to-br from-fuchsia-500 to-cyan-500 rounded-full animate-pulse" 
-                 style={{ boxShadow: '0 0 40px rgba(236, 72, 153, 0.8), 0 0 80px rgba(0, 240, 255, 0.5)' }} />
+            <div
+              className="w-12 h-12 bg-gradient-to-br from-fuchsia-500 to-cyan-500 rounded-full animate-pulse"
+              style={{
+                boxShadow: '0 0 40px rgba(236, 72, 153, 0.8), 0 0 80px rgba(0, 240, 255, 0.5)',
+              }}
+            />
           </div>
 
           {/* Particles */}
@@ -73,7 +77,7 @@ export const LoadingBunker = ({
 
         {/* Message */}
         <div className="space-y-4">
-          <h1 
+          <h1
             className="text-3xl font-black tracking-wider"
             style={{
               color: '#ec4899',
@@ -81,14 +85,13 @@ export const LoadingBunker = ({
               fontFamily: 'Orbitron, monospace',
             }}
           >
-            {message}{dots}
+            {message}
+            {dots}
           </h1>
 
           {isError && (
             <div className="mt-6 space-y-2">
-              <p className="text-red-400 text-sm font-mono">
-                ⚠️ ERROR DE CONEXIÓN
-              </p>
+              <p className="text-red-400 text-sm font-mono">⚠️ ERROR DE CONEXIÓN</p>
               <p className="text-gray-500 text-xs">
                 Verifica las credenciales de Firebase en .env.local
               </p>
@@ -106,9 +109,9 @@ export const LoadingBunker = ({
 
         {/* Progress Bar */}
         <div className="w-64 h-1 mx-auto bg-gray-800 rounded-full overflow-hidden">
-          <div 
+          <div
             className="h-full bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-500 animate-pulse"
-            style={{ 
+            style={{
               width: '100%',
               boxShadow: '0 0 20px rgba(236, 72, 153, 0.8)',
             }}
@@ -118,13 +121,21 @@ export const LoadingBunker = ({
 
       <style jsx>{`
         @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
-        
+
         @keyframes spin-reverse {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
         }
 
         .animate-spin-slow {

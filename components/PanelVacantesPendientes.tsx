@@ -21,7 +21,7 @@ export default function PanelVacantesPendientes({ vacantes, onAceptar, onRechaza
       <div className="relative overflow-hidden rounded-2xl border-2 border-orange-500 bg-gradient-to-br from-black via-orange-950/50 to-black backdrop-blur-xl shadow-2xl shadow-orange-500/20">
         {/* Glow effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-orange-600/10 via-yellow-600/10 to-orange-600/10 animate-pulse" />
-        
+
         <div className="relative p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
@@ -45,22 +45,14 @@ export default function PanelVacantesPendientes({ vacantes, onAceptar, onRechaza
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-2xl">🏢</span>
-                      <h4 className="text-xl font-bold text-white">
-                        {vacante.empresa}
-                      </h4>
+                      <h4 className="text-xl font-bold text-white">{vacante.empresa}</h4>
                     </div>
-                    <p className="text-cyan-300 font-mono text-sm mb-1">
-                      📍 {vacante.ubicacion}
-                    </p>
+                    <p className="text-cyan-300 font-mono text-sm mb-1">📍 {vacante.ubicacion}</p>
                     {vacante.datos.puesto && (
-                      <p className="text-purple-300 font-mono text-sm">
-                        💼 {vacante.datos.puesto}
-                      </p>
+                      <p className="text-purple-300 font-mono text-sm">💼 {vacante.datos.puesto}</p>
                     )}
                     {vacante.datos.salario && (
-                      <p className="text-green-300 font-mono text-sm">
-                        💰 {vacante.datos.salario}
-                      </p>
+                      <p className="text-green-300 font-mono text-sm">💰 {vacante.datos.salario}</p>
                     )}
                   </div>
 
@@ -73,7 +65,7 @@ export default function PanelVacantesPendientes({ vacantes, onAceptar, onRechaza
                       <span className="relative z-10">✅ ACEPTAR</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-400/20 opacity-0 group-hover/btn:opacity-100 transition rounded-lg" />
                     </button>
-                    
+
                     <button
                       onClick={() => onRechazar(vacante.id)}
                       className="group/btn relative px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-sm border-2 border-red-400/50 hover:border-red-300 transition-all hover:scale-105 hover:shadow-lg hover:shadow-red-500/50"

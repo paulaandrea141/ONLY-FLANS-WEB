@@ -52,8 +52,8 @@ export default function Dashboard() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contenido: `📸 Captura subida: ${file.name}`,
-          tipoInput: 'imagen'
-        })
+          tipoInput: 'imagen',
+        }),
       });
 
       const formData = new FormData();
@@ -74,7 +74,8 @@ export default function Dashboard() {
           puesto: d.puesto || '',
           salario: d.salario || '',
           experiencia: d.requisitos || '',
-          descripcion: `📍 ${d.empresa} - ${d.ubicacion}\n⏰ ${d.horario}\n🚌 ${d.rutas_transporte}\n💼 ${d.requisitos}\n💰 ${d.salario}${d.beneficios !== 'No especificado' ? `\n🎁 ${d.beneficios}` : ''}`.trim(),
+          descripcion:
+            `📍 ${d.empresa} - ${d.ubicacion}\n⏰ ${d.horario}\n🚌 ${d.rutas_transporte}\n💼 ${d.requisitos}\n💰 ${d.salario}${d.beneficios !== 'No especificado' ? `\n🎁 ${d.beneficios}` : ''}`.trim(),
           requisitos: d.requisitos || '',
         });
 
@@ -86,9 +87,9 @@ export default function Dashboard() {
           id: Date.now().toString(),
           empresa: d.empresa,
           ubicacion: d.ubicacion,
-          datos: d
+          datos: d,
         };
-        setVacantesPendientes(prev => [...prev, vacanteTemp]);
+        setVacantesPendientes((prev) => [...prev, vacanteTemp]);
 
         // Registrar respuesta IA en historial
         await fetch(`${apiUrl}/api/historial/mensaje`, {
@@ -96,12 +97,9 @@ export default function Dashboard() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             contenido: `🧠 Bob: Jessica, detecté ${d.empresa}. ¿La mando a la Ristra?`,
-            tipoInput: 'imagen'
-          })
+            tipoInput: 'imagen',
+          }),
         });
-        
-        // Auto-publicar si está activado
-        if (autoPublicar) {
       } else {
         show(`❌ ${result.error || 'No se pudo leer la imagen'}`, 'error');
       }
@@ -129,10 +127,10 @@ export default function Dashboard() {
 
       if (result.success && result.resultado) {
         const r = result.resultado;
-        
+
         if (r.tipo === 'cambio' && r.campo) {
           // Aplicar micro-cambio
-          setForm(prev => ({
+          setForm((prev) => ({
             ...prev,
             [r.campo]: r.valorNuevo,
           }));
@@ -163,7 +161,7 @@ export default function Dashboard() {
     try {
       const startTime = Date.now();
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-      
+
       const res = await fetch(`${apiUrl}/api/vacantes/extract`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -175,22 +173,23 @@ export default function Dashboard() {
 
       if (result.success && result.datos) {
         const d = result.datos;
-        
+
         // ✅ AUTO-RELLENO SANGRIENTO
         setForm({
           puesto: d.puesto || '',
           salario: d.salario || '',
           experiencia: d.requisitos || '',
-          descripcion: `📍 ${d.empresa} - ${d.ubicacion}\n⏰ ${d.horario}\n🚌 ${d.rutas_transporte}\n💼 ${d.requisitos}\n💰 ${d.salario}${d.beneficios !== 'No especificado' ? `\n🎁 ${d.beneficios}` : ''}`.trim(),
+          descripcion:
+            `📍 ${d.empresa} - ${d.ubicacion}\n⏰ ${d.horario}\n🚌 ${d.rutas_transporte}\n💼 ${d.requisitos}\n💰 ${d.salario}${d.beneficios !== 'No especificado' ? `\n🎁 ${d.beneficios}` : ''}`.trim(),
           requisitos: d.requisitos || '',
         });
 
         show(`✅ Vacante auto-rellenada en ${latency}ms. Revisa y guarda.`, 'success');
         textarea.value = '';
-        
+
         // Scroll automático al formulario
         document.querySelector('form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
+
         // Auto-publicar si está activado
         if (autoPublicar) {
           setTimeout(() => {
@@ -301,7 +300,7 @@ export default function Dashboard() {
       <PanelVacantesPendientes
         vacantes={vacantesPendientes}
         onAceptar={async (id) => {
-          const vacante = vacantesPendientes.find(v => v.id === id);
+          const vacante = vacantesPendientes.find((v) => v.id === id);
           if (vacante) {
             // Guardar en Firebase
             const formData = {
@@ -311,11 +310,11 @@ export default function Dashboard() {
               descripcion: vacante.datos.descripcion || '',
               requisitos: vacante.datos.requisitos || '',
             };
-            
+
             try {
               await addDoc(collection(db, 'vacantes'), formData);
               show(`✅ ${vacante.empresa} guardada en la Ristra`, 'success');
-              
+
               // Registrar en historial
               const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
               await fetch(`${apiUrl}/api/historial/mensaje`, {
@@ -323,21 +322,21 @@ export default function Dashboard() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   contenido: `🧠 Bob: Jessica, ${vacante.empresa} guardada. Ya está en la Ristra.`,
-                  tipoInput: 'imagen'
-                })
+                  tipoInput: 'imagen',
+                }),
               });
-              
-              setVacantesPendientes(prev => prev.filter(v => v.id !== id));
+
+              setVacantesPendientes((prev) => prev.filter((v) => v.id !== id));
             } catch (error) {
               show('❌ Error al guardar', 'error');
             }
           }
         }}
         onRechazar={async (id) => {
-          const vacante = vacantesPendientes.find(v => v.id === id);
+          const vacante = vacantesPendientes.find((v) => v.id === id);
           if (vacante) {
             show(`❌ ${vacante.empresa} descartada`, 'info');
-            
+
             // Registrar en historial
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
             await fetch(`${apiUrl}/api/historial/mensaje`, {
@@ -345,11 +344,11 @@ export default function Dashboard() {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 contenido: `🧠 Bob: Jessica, descartando ${vacante.empresa}. No se guardó nada.`,
-                tipoInput: 'imagen'
-              })
+                tipoInput: 'imagen',
+              }),
             });
-            
-            setVacantesPendientes(prev => prev.filter(v => v.id !== id));
+
+            setVacantesPendientes((prev) => prev.filter((v) => v.id !== id));
           }
         }}
       />
@@ -384,16 +383,28 @@ export default function Dashboard() {
 
             {/* Navigation */}
             <div className="flex gap-4 flex-wrap">
-              <Link href="/" className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-cyan-600 to-blue-600 text-white border border-cyan-400 cursor-pointer hover:shadow-lg hover:shadow-cyan-500/50 transition inline-block">
+              <Link
+                href="/"
+                className="px-4 py-2 rounded-lg font-mono text-sm bg-gradient-to-r from-cyan-600 to-blue-600 text-white border border-cyan-400 cursor-pointer hover:shadow-lg hover:shadow-cyan-500/50 transition inline-block"
+              >
                 📊 Dashboard
               </Link>
-              <Link href="/candidatos" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 cursor-pointer transition inline-block">
+              <Link
+                href="/candidatos"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 cursor-pointer transition inline-block"
+              >
                 👥 Candidatos
               </Link>
-              <Link href="/vacantes" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 cursor-pointer transition inline-block">
+              <Link
+                href="/vacantes"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 cursor-pointer transition inline-block"
+              >
                 💼 Vacantes
               </Link>
-              <Link href="/leads" className="px-4 py-2 rounded-lg font-mono text-sm glass border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 cursor-pointer transition inline-block">
+              <Link
+                href="/leads"
+                className="px-4 py-2 rounded-lg font-mono text-sm glass border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 cursor-pointer transition inline-block"
+              >
                 📞 Leads
               </Link>
             </div>
@@ -477,7 +488,7 @@ export default function Dashboard() {
                 {(isProcessingImage || isProcessing) && (
                   <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 via-yellow-500/20 to-orange-600/20 animate-pulse" />
                 )}
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
@@ -493,11 +504,13 @@ export default function Dashboard() {
                     </div>
 
                     {/* Indicador de estado */}
-                    <div className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      isProcessingImage || isProcessing
-                        ? 'bg-yellow-500/20 text-yellow-400 animate-pulse'
-                        : 'bg-green-500/20 text-green-400'
-                    }`}>
+                    <div
+                      className={`px-3 py-1 rounded-full text-xs font-bold ${
+                        isProcessingImage || isProcessing
+                          ? 'bg-yellow-500/20 text-yellow-400 animate-pulse'
+                          : 'bg-green-500/20 text-green-400'
+                      }`}
+                    >
                       {isProcessingImage || isProcessing ? '⚡ PROCESANDO...' : '✅ LISTO'}
                     </div>
                   </div>
@@ -577,9 +590,7 @@ export default function Dashboard() {
                     <div className="p-8 bg-black/30 rounded-lg border border-blue-500/30">
                       <div className="text-center mb-4">
                         <div className="text-5xl mb-3">🎤</div>
-                        <p className="text-blue-400 font-bold mb-2">
-                          Control de Voz Activado
-                        </p>
+                        <p className="text-blue-400 font-bold mb-2">Control de Voz Activado</p>
                         <p className="text-blue-300/60 text-sm">
                           Di: "Súbele 2k al sueldo de DAMAR" o "Cambia el horario a vespertino"
                         </p>
@@ -605,9 +616,7 @@ export default function Dashboard() {
                       <p className="text-green-400 font-mono text-xs mb-2">
                         📝 Texto extraído de la imagen:
                       </p>
-                      <p className="text-white text-sm whitespace-pre-wrap">
-                        {textoExtraido}
-                      </p>
+                      <p className="text-white text-sm whitespace-pre-wrap">{textoExtraido}</p>
                     </div>
                   )}
 
@@ -638,7 +647,9 @@ export default function Dashboard() {
                     <button
                       type="button"
                       onClick={() => {
-                        const textarea = document.getElementById('ingesta-texto') as HTMLTextAreaElement;
+                        const textarea = document.getElementById(
+                          'ingesta-texto'
+                        ) as HTMLTextAreaElement;
                         if (textarea) textarea.value = '';
                         setTextoExtraido('');
                       }}
@@ -675,19 +686,22 @@ export default function Dashboard() {
 
                   {/* Ejemplos rápidos */}
                   <div className="mt-3 text-xs text-orange-300/60 font-mono">
-                    💡 <strong>Ejemplos válidos:</strong> "operario ILSAN 2288 turno vespertino" | "supervisor MAGNEKON experiencia 3 años" | "chofer ruta santa maría sueldo 2500"
+                    💡 <strong>Ejemplos válidos:</strong> "operario ILSAN 2288 turno vespertino" |
+                    "supervisor MAGNEKON experiencia 3 años" | "chofer ruta santa maría sueldo 2500"
                   </div>
                 </div>
               </div>
 
-              <form onSubmit={handleSave} className="space-y-4">
+              <div>
+                <textarea
+                  id="ingesta-texto"
                   placeholder="Ejemplo: 'urge operario en DAMAR sueldo 10k turno matutino ruta desde cumbres req secundaria'"
                   className="w-full bg-black/50 border border-orange-500/30 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-500/50 backdrop-blur-sm transition font-mono text-sm min-h-[100px]"
                   onPaste={async (e) => {
                     const texto = e.clipboardData.getData('text');
                     if (texto.trim().length > 20) {
                       show('🔍 Analizando texto con IA...', 'info');
-                      
+
                       try {
                         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
                         const res = await fetch(`${apiUrl}/api/vacantes/extract`, {
@@ -767,9 +781,7 @@ export default function Dashboard() {
                     className="flex-1 relative group bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 rounded-lg overflow-hidden transition duration-300 hover:shadow-lg hover:shadow-cyan-500/50"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition duration-300" />
-                    <span className="relative">
-                      {editingId ? '💾 ACTUALIZAR' : '➕ AGREGAR'}
-                    </span>
+                    <span className="relative">{editingId ? '💾 ACTUALIZAR' : '➕ AGREGAR'}</span>
                   </button>
                   {editingId && (
                     <button
@@ -823,9 +835,7 @@ export default function Dashboard() {
                       <th className="px-6 py-4 text-left text-sm font-black text-cyan-400">
                         SALARIO
                       </th>
-                      <th className="px-6 py-4 text-left text-sm font-black text-cyan-400">
-                        EXP.
-                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-black text-cyan-400">EXP.</th>
                       <th className="px-6 py-4 text-left text-sm font-black text-cyan-400">
                         DESCRIPCIÓN
                       </th>
@@ -846,9 +856,7 @@ export default function Dashboard() {
                         <td className="px-6 py-4 text-cyan-300 font-mono">
                           ${vacante.salario || '-'}
                         </td>
-                        <td className="px-6 py-4 text-gray-400">
-                          {vacante.experiencia || '-'}
-                        </td>
+                        <td className="px-6 py-4 text-gray-400">{vacante.experiencia || '-'}</td>
                         <td className="px-6 py-4 max-w-xs truncate text-gray-300">
                           {vacante.descripcion}
                         </td>
@@ -878,8 +886,7 @@ export default function Dashboard() {
           <div className="mt-8 relative group overflow-hidden rounded-xl border border-cyan-500/30 p-6 bg-gradient-to-r from-cyan-500/10 via-black/50 to-purple-500/10 backdrop-blur-xl">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/10 via-transparent to-purple-600/10 opacity-0 group-hover:opacity-100 transition duration-500" />
             <p className="relative text-cyan-300 font-mono text-sm text-center">
-              💡 El bot 🤖 leerá automáticamente estas vacantes y comenzará a reclutar en
-              WhatsApp
+              💡 El bot 🤖 leerá automáticamente estas vacantes y comenzará a reclutar en WhatsApp
             </p>
           </div>
         </main>

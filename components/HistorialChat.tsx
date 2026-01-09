@@ -26,7 +26,7 @@ export default function HistorialChat() {
   // Cargar historial inicial
   useEffect(() => {
     fetchHistorial();
-    
+
     // Actualizar cada 30 segundos
     const interval = setInterval(fetchHistorial, 30000);
     return () => clearInterval(interval);
@@ -44,7 +44,7 @@ export default function HistorialChat() {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
       const res = await fetch(`${apiUrl}/api/historial/ingesta`);
       const data = await res.json();
-      
+
       if (data.success) {
         setMensajes(data.mensajes);
       }
@@ -57,19 +57,23 @@ export default function HistorialChat() {
 
   const getIconoTipo = (tipo: string) => {
     switch (tipo) {
-      case 'texto': return '⌨️';
-      case 'imagen': return '📸';
-      case 'voz': return '🎤';
-      default: return '💬';
+      case 'texto':
+        return '⌨️';
+      case 'imagen':
+        return '📸';
+      case 'voz':
+        return '🎤';
+      default:
+        return '💬';
     }
   };
 
   const formatTimestamp = (timestamp: number) => {
     const date = new Date(timestamp);
-    return date.toLocaleTimeString('es-MX', { 
-      hour: '2-digit', 
+    return date.toLocaleTimeString('es-MX', {
+      hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit'
+      second: '2-digit',
     });
   };
 
@@ -108,7 +112,7 @@ export default function HistorialChat() {
       </div>
 
       {/* Mensajes */}
-      <div 
+      <div
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-orange-500/50 scrollbar-track-black/30"
       >
@@ -143,32 +147,29 @@ export default function HistorialChat() {
 
                 {/* Avatar */}
                 <div className="flex items-start gap-3">
-                  <div className="text-2xl">
-                    {msg.tipo === 'usuario' ? '👑' : '🧠'}
-                  </div>
+                  <div className="text-2xl">{msg.tipo === 'usuario' ? '👑' : '🧠'}</div>
                   <div className="flex-1">
                     <div className="text-xs opacity-70 mb-1 font-bold">
                       {msg.tipo === 'usuario' ? 'PAULA ANDREA HAYLE' : 'BOB (SOCIO MAYORITARIO)'}
                     </div>
 
                     {/* Contenido */}
-                    <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                      {msg.contenido}
-                    </p>
+                    <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.contenido}</p>
 
                     {/* Empresas detectadas */}
-                    {msg.metadatos?.empresasDetectadas && msg.metadatos.empresasDetectadas.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {msg.metadatos.empresasDetectadas.map((empresa, i) => (
-                          <span
-                            key={i}
-                            className="px-2 py-1 bg-black/40 rounded text-xs font-bold border border-white/20"
-                          >
-                            🏢 {empresa}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                    {msg.metadatos?.empresasDetectadas &&
+                      msg.metadatos.empresasDetectadas.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {msg.metadatos.empresasDetectadas.map((empresa, i) => (
+                            <span
+                              key={i}
+                              className="px-2 py-1 bg-black/40 rounded text-xs font-bold border border-white/20"
+                            >
+                              🏢 {empresa}
+                            </span>
+                          ))}
+                        </div>
+                      )}
 
                     {/* Estado de acción */}
                     {msg.metadatos?.accionTomada && (
@@ -195,10 +196,10 @@ export default function HistorialChat() {
       <div className="p-3 border-t-2 border-orange-500/30 bg-black/80 backdrop-blur-xl">
         <div className="flex items-center justify-between text-xs font-mono">
           <div className="text-orange-300/60">
-            📊 {mensajes.filter(m => m.tipo === 'usuario').length} capturas analizadas
+            📊 {mensajes.filter((m) => m.tipo === 'usuario').length} capturas analizadas
           </div>
           <div className="text-purple-300/60">
-            🤖 {mensajes.filter(m => m.tipo === 'ia').length} respuestas de Bob
+            🤖 {mensajes.filter((m) => m.tipo === 'ia').length} respuestas de Bob
           </div>
         </div>
       </div>
