@@ -352,35 +352,53 @@ export default function Dashboard() {
             </div>
 
             {/* 🌪️ ASPIRADORA 3000 - TAMAÑO COMPLETO GIGANTE */}
-            <div className="relative overflow-hidden rounded-3xl border-4 border-fuchsia-500/60 bg-gradient-to-br from-fuchsia-500/20 via-purple-600/20 to-pink-500/20 p-12 mb-8 backdrop-blur-xl shadow-[0_0_80px_rgba(217,70,239,0.5)]">
-              {/* Efecto de glow pulsante GRANDE */}
-              <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-600/30 via-purple-500/30 to-pink-600/30 animate-pulse" />
-
+            <div
+              id="terminal-aspiradora"
+              style={{
+                backgroundColor: '#000000',
+                color: '#00FF41',
+                padding: '48px',
+                marginBottom: '32px',
+                borderRadius: '24px',
+                border: '4px solid #ff00ff',
+                fontFamily: '"Cascadia Code", "Fira Code", monospace',
+                boxShadow: 'inset 0 0 20px #000000, 0 0 15px #ff00ff',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
               <div className="relative z-10">
                 {/* Header GIGANTE con icono giratorio */}
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex items-center gap-6 mb-8 border-b-2 border-fuchsia-500 pb-6">
                   <div className={`text-8xl ${succionando ? 'animate-spin' : ''}`}>🌪️</div>
                   <div className="flex-1">
-                    <h2 className="text-6xl font-black text-transparent bg-gradient-to-r from-fuchsia-400 via-purple-400 to-pink-400 bg-clip-text mb-2">
+                    <h2 className="text-6xl font-black text-white mb-2">
                       ASPIRADORA 3000 - SISTEMA TOTAL
                     </h2>
-                    <p className="text-fuchsia-300/90 font-mono text-xl mt-3">
-                      🚀 Succiona 300 mensajes • Groq IA procesa • Firebase guarda automáticamente
-                    </p>
-                    <p className="text-fuchsia-400/80 text-base mt-2 font-mono">
-                      📱 Conectado: <span className="text-pink-400 font-black">[PROTEGIDO]</span>{' '}
-                      (Paula Specter - CEO)
+                    <p style={{ color: '#ff00ff', fontWeight: 'bold', fontSize: '20px' }}>
+                      [CORP. TYRELL - RAMA 8 - TERMINAL DE CONTROL]
                     </p>
                   </div>
                   {/* Badge de status GIGANTE */}
                   <div
-                    className={`px-8 py-6 rounded-2xl font-black text-2xl border-4 shadow-lg ${
-                      succionando
-                        ? 'bg-yellow-500/30 text-yellow-300 border-yellow-500 animate-pulse'
+                    style={{
+                      padding: '24px 32px',
+                      borderRadius: '16px',
+                      fontWeight: 900,
+                      fontSize: '24px',
+                      border: '4px solid',
+                      backgroundColor: succionando
+                        ? 'rgba(234, 179, 8, 0.2)'
                         : resultadoSuccion
-                          ? 'bg-green-500/30 text-green-300 border-green-500'
-                          : 'bg-fuchsia-500/30 text-fuchsia-300 border-fuchsia-500'
-                    }`}
+                          ? 'rgba(34, 197, 94, 0.2)'
+                          : 'rgba(255, 0, 255, 0.2)',
+                      color: succionando ? '#facc15' : resultadoSuccion ? '#4ade80' : '#ff00ff',
+                      borderColor: succionando
+                        ? '#eab308'
+                        : resultadoSuccion
+                          ? '#22c55e'
+                          : '#ff00ff',
+                    }}
                   >
                     {succionando ? '⚙️ ACTIVA' : resultadoSuccion ? '✅ COMPLETA' : '🔥 LISTA'}
                   </div>
@@ -423,20 +441,23 @@ export default function Dashboard() {
                 {succionando && (
                   <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl text-fuchsia-300 font-bold font-mono">
+                      <span className="text-2xl font-bold font-mono" style={{ color: '#00FF41' }}>
                         Procesando {mensajesProcesados}/300 mensajes...
                       </span>
-                      <span className="text-4xl text-pink-300 font-black font-mono">
+                      <span className="text-4xl font-black font-mono" style={{ color: '#ff00ff' }}>
                         {Math.round((mensajesProcesados / 300) * 100)}%
                       </span>
                     </div>
-                    <div className="w-full h-8 bg-black/70 rounded-full overflow-hidden border-4 border-fuchsia-500/50">
+                    <div className="w-full h-8 bg-black rounded-full overflow-hidden border-4 border-fuchsia-500">
                       <div
                         className="h-full bg-gradient-to-r from-fuchsia-500 via-purple-500 to-pink-500 transition-all duration-500 animate-pulse shadow-lg shadow-fuchsia-500/50"
                         style={{ width: `${(mensajesProcesados / 300) * 100}%` }}
                       />
                     </div>
-                    <p className="text-lg text-fuchsia-300/80 mt-4 font-mono animate-pulse">
+                    <p
+                      className="text-lg mt-4 font-mono animate-pulse"
+                      style={{ color: '#00FF41' }}
+                    >
                       🧠 Groq IA (Llama 3.3 70B) analizando contexto completo...
                     </p>
                   </div>
@@ -444,34 +465,115 @@ export default function Dashboard() {
 
                 {/* Resultado de Succión GRANDE */}
                 {resultadoSuccion && (
-                  <div className="p-8 bg-green-500/20 border-4 border-green-500/50 rounded-2xl mb-8 shadow-xl">
-                    <h4 className="text-green-300 font-black text-3xl mb-6">
+                  <div
+                    style={{
+                      padding: '32px',
+                      backgroundColor: '#000000',
+                      border: '4px solid #22c55e',
+                      borderRadius: '16px',
+                      marginBottom: '32px',
+                      boxShadow: '0 0 30px rgba(34, 197, 94, 0.2)',
+                    }}
+                  >
+                    <h4
+                      style={{
+                        color: '#4ade80',
+                        fontWeight: 900,
+                        fontSize: '30px',
+                        marginBottom: '24px',
+                      }}
+                    >
                       ✅ SUCCIÓN COMPLETADA
                     </h4>
                     <div className="grid grid-cols-3 gap-6 text-center mb-6">
-                      <div className="bg-black/40 p-6 rounded-xl border-2 border-green-500/30">
-                        <p className="text-5xl font-black text-green-400">
+                      <div
+                        style={{
+                          backgroundColor: '#1a1a1a',
+                          padding: '24px',
+                          borderRadius: '12px',
+                          border: '2px solid rgba(34, 197, 94, 0.3)',
+                        }}
+                      >
+                        <p
+                          style={{ fontSize: '48px', fontWeight: 900, color: '#4ade80', margin: 0 }}
+                        >
                           {resultadoSuccion.totalMensajes}
                         </p>
-                        <p className="text-lg text-green-300/80 mt-2">Mensajes</p>
+                        <p
+                          style={{
+                            fontSize: '18px',
+                            color: 'rgba(74, 222, 128, 0.8)',
+                            marginTop: '8px',
+                          }}
+                        >
+                          Mensajes
+                        </p>
                       </div>
-                      <div className="bg-black/40 p-6 rounded-xl border-2 border-fuchsia-500/30">
-                        <p className="text-5xl font-black text-fuchsia-400">
+                      <div
+                        style={{
+                          backgroundColor: '#1a1a1a',
+                          padding: '24px',
+                          borderRadius: '12px',
+                          border: '2px solid rgba(255, 0, 255, 0.3)',
+                        }}
+                      >
+                        <p
+                          style={{ fontSize: '48px', fontWeight: 900, color: '#ff00ff', margin: 0 }}
+                        >
                           {resultadoSuccion.vacantesDetectadas}
                         </p>
-                        <p className="text-lg text-fuchsia-300/80 mt-2">Vacantes</p>
+                        <p
+                          style={{
+                            fontSize: '18px',
+                            color: 'rgba(255, 0, 255, 0.8)',
+                            marginTop: '8px',
+                          }}
+                        >
+                          Vacantes
+                        </p>
                       </div>
-                      <div className="bg-black/40 p-6 rounded-xl border-2 border-purple-500/30">
-                        <p className="text-5xl font-black text-purple-400">
+                      <div
+                        style={{
+                          backgroundColor: '#1a1a1a',
+                          padding: '24px',
+                          borderRadius: '12px',
+                          border: '2px solid rgba(168, 85, 247, 0.3)',
+                        }}
+                      >
+                        <p
+                          style={{ fontSize: '48px', fontWeight: 900, color: '#a855f7', margin: 0 }}
+                        >
                           {resultadoSuccion.sincronizacion?.actualizadas || 0}
                         </p>
-                        <p className="text-lg text-purple-300/80 mt-2">Actualizadas</p>
+                        <p
+                          style={{
+                            fontSize: '18px',
+                            color: 'rgba(168, 85, 247, 0.8)',
+                            marginTop: '8px',
+                          }}
+                        >
+                          Actualizadas
+                        </p>
                       </div>
                     </div>
-                    <div className="p-6 bg-black/40 rounded-xl border-2 border-green-500/30">
-                      <p className="text-green-300 text-lg font-mono leading-relaxed">
+                    <div
+                      style={{
+                        padding: '24px',
+                        backgroundColor: '#000000',
+                        borderRadius: '12px',
+                        border: '2px solid rgba(34, 197, 94, 0.3)',
+                      }}
+                    >
+                      <pre
+                        style={{
+                          color: '#00FF41',
+                          fontSize: '18px',
+                          whiteSpace: 'pre-wrap',
+                          fontFamily: 'monospace',
+                        }}
+                      >
                         {resultadoSuccion.resumen}
-                      </p>
+                      </pre>
                     </div>
                   </div>
                 )}
